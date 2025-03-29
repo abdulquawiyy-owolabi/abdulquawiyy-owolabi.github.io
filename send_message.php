@@ -1,93 +1,79 @@
 <?php
-// send_message.php
-
 // Set headers for JSON response
 header('Content-Type: application/json');
 
-// Initialize response array
-$response = [
-    'status' => 'error',
-    'message' => 'An unknown error occurred'
-];
-
-// Check if the form was submitted using POST method
+// Check if form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validate form data
+    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
+    $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
     
-    // Get form data and sanitize inputs
-    $name = isset($_POST['name']) ? filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING) : '';
-    $email = isset($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL) : '';
-    $subject = isset($_POST['subject']) ? filter_var(trim($_POST['subject']), FILTER_SANITIZE_STRING) : '';
-    $message = isset($_POST['message']) ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : '';
-    
-    // Validate data
+    // Basic validation
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        $response['message'] = 'All fields are required.';
-        echo json_encode($response);
+        echo json_encode([
+            'success' => false,
+            'message' => 'All fields are required'
+        ]);
         exit;
     }
     
-    // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $response['message'] = 'Please enter a valid email address.';
-        echo json_encode($response);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid email format'
+        ]);
         exit;
     }
     
-    // Set email recipient
-    $to = 'oaabdulquawiyy@gmail.com'; // Recipient email from the HTML
+    // Email configuration - replace with your actual email
+    $to = 'oaabdulquawiyy@gmail.com';
+    $subject_line = "Portfolio Contact: $subject";
     
-    // Set email headers
+    // Email headers
     $headers = "From: $name <$email>\r\n";
     $headers .= "Reply-To: $email\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     
-    // Build email content
-    $email_content = "
-    <!DOCTYPE html>
+    // Email body
+    $email_body = "
     <html>
     <head>
-        <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #f8f9fa; padding: 15px; border-bottom: 1px solid #ddd; }
-            .content { padding: 20px 0; }
-            .footer { font-size: 12px; color: #777; border-top: 1px solid #ddd; padding-top: 15px; }
-        </style>
+        <title>New Contact Message</title>
     </head>
     <body>
-        <div class='container'>
-            <div class='header'>
-                <h2>New Contact Form Submission</h2>
-            </div>
-            <div class='content'>
-                <p><strong>Name:</strong> $name</p>
-                <p><strong>Email:</strong> $email</p>
-                <p><strong>Subject:</strong> $subject</p>
-                <p><strong>Message:</strong></p>
-                <p>" . nl2br($message) . "</p>
-            </div>
-            <div class='footer'>
-                <p>This email was sent from your website contact form on " . date('F j, Y, g:i a') . "</p>
-            </div>
-        </div>
+        <h2>Contact Message from Your Portfolio</h2>
+        <p><strong>Name:</strong> $name</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Subject:</strong> $subject</p>
+        <p><strong>Message:</strong></p>
+        <p>" . nl2br($message) . "</p>
     </body>
-    </html>";
+    </html>
+    ";
     
     // Send email
-    if (mail($to, "Contact Form: $subject", $email_content, $headers)) {
-        $response = [
-            'status' => 'success',
-            'message' => 'Your message has been sent. Thank you!'
-        ];
+    $mail_sent = @mail($to, $subject_line, $email_body, $headers);
+    
+    if ($mail_sent) {
+        // Success response
+        echo json_encode([
+            'success' => true,
+            'message' => 'Message sent successfully'
+        ]);
     } else {
-        $response['message'] = 'Unable to send message. Please try again.';
-        
-        // For debugging purposes (in development environment only)
-        // $response['debug'] = error_get_last();
+        // Error response
+        echo json_encode([
+            'success' => false,
+            'message' => 'Failed to send message. Please try again later.'
+        ]);
     }
+} else {
+    // Not a POST request
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid request method'
+    ]);
 }
-
-// Return JSON response
-echo json_encode($response);
-exit;
