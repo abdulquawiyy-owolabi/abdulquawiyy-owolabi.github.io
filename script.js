@@ -77,123 +77,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Contact Form Submission
+document.addEventListener('DOMContentLoaded', function() {
+    // Get reference to the contact form
     const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            fetch('send_message.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Message sent successfully!');
-                    contactForm.reset();
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again later.');
-            });
-        });
-    }
     
-    // Export Modal Functionality
-    const exportModal = document.querySelector('.export-modal');
-    const exportModalBtn = document.getElementById('exportModal');
-    const closeModal = document.querySelector('.close-modal');
-    const exportBtns = document.querySelectorAll('.export-btn');
-    
-    // Show export modal
-    function showExportModal() {
-        if (exportModal) {
-            exportModal.style.display = 'block';
-        }
-    }
-    
-    // Open export modal when clicking the export button
-    if (exportModalBtn) {
-        exportModalBtn.addEventListener('click', function() {
-            showExportModal();
-        });
-    }
-    
-    // Close export modal
-    if (closeModal) {
-        closeModal.addEventListener('click', function() {
-            exportModal.style.display = 'none';
-        });
-    }
-    
-    // Close modal when clicking outside
-    window.addEventListener('click', function(e) {
-        if (e.target === exportModal) {
-            exportModal.style.display = 'none';
-        }
-    });
-    
-    // Export buttons functionality
-    exportBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const btnId = this.id;
-            
-            switch(btnId) {
-                case 'exportHTML':
-                    exportFile('index.html');
-                    break;
-                case 'exportCSS':
-                    exportFile('css/styles.css');
-                    break;
-                case 'exportJS':
-                    exportFile('js/script.js');
-                    break;
-                case 'exportPHP':
-                    exportFile('send_message.php');
-                    break;
-                case 'exportAll':
-                    exportFile('all');
-                    break;
+    // Add submit event listener to the form
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get the submit button
+        const submitBtn = document.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.textContent;
+        
+        // Change button text and disable it during submission
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Create FormData object from the form
+        const formData = new FormData(contactForm);
+        
+        // Send the form data using fetch API
+        fetch('send_message.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json();
+        })
+        .then(data => {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = data.status === 'success' 
+                ? 'notification success-message' 
+                : 'notification error-message';
+            notification.textContent = data.message;
+            
+            // Add notification before the form
+            contactForm.parentNode.insertBefore(notification, contactForm);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+            
+            // Clear form on success
+            if (data.status === 'success') {
+                contactForm.reset();
+            }
+        })
+        .catch(error => {
+            // Create error notification
+            const notification = document.createElement('div');
+            notification.className = 'notification error-message';
+            notification.textContent = 'There was a problem sending your message. Please try again later.';
+            
+            // Add notification before the form
+            contactForm.parentNode.insertBefore(notification, contactForm);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+            
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            // Reset button state
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
         });
     });
-    
-    // Export file function
-    function exportFile(fileType) {
-        window.location.href = `export.php?file=${fileType}`;
-    }
-    
-    // Set current year in footer
-    const currentYearElement = document.getElementById('current-year');
-    if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
-    }
-    
-    // Add active class to nav link based on current section
-    const sections = document.querySelectorAll('section');
-    
-    window.addEventListener('scroll', function() {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (pageYOffset >= (sectionTop - 150)) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
+});
             }
         });
     });
