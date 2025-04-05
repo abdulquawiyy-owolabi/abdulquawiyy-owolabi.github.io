@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadCVBtn = document.getElementById('downloadCV');
     const scrollTopBtn = document.getElementById('scroll-top');
     
+    document.addEventListener('DOMContentLoaded', function() {
+        const downloadButton = document.getElementById('downloadCV');
+        
+        downloadButton.addEventListener('click', function(e) {
+            // Prevent default anchor behavior
+            e.preventDefault();
+            
+            // Open the Google Drive link in a new tab
+            window.open('https://drive.google.com/file/d/1BKxPh4aVUt4tr_uNpAER-BP8NHPYxXrP/view?usp=sharing', '_blank');
+        });
+    });
+
     // Toggle sidebar on menu click
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
