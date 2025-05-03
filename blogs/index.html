@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Land Suitability for Solar Power in Kano State | GIS and MCDA Study</title>
+    <meta name="description" content="Research study on land suitability analysis for solar power plants in Kano State, Nigeria using GIS and Multi-Criteria Decision Analysis." />
+    <meta name="author" content="Solar Energy Research" />
+
+    <meta property="og:title" content="Land Suitability for Solar Power in Kano State | GIS and MCDA Study" />
+    <meta property="og:description" content="Research study on land suitability analysis for solar power plants in Kano State, Nigeria using GIS and Multi-Criteria Decision Analysis." />
+    <meta property="og:type" content="website" />
+
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-sun"></i>
+          <span>Solar Farm Land Suitability</span>
+        </div>
+        
+        <nav class="main-nav">
+          <ul>
+            <li><a href="../index.html#home">Home</a></li>
+            <li><a href="#background">Background</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#conclusions">Conclusions</a></li>
+            <li><a href="#references">References</a></li>
+            <li><a href="#download" class="download-btn">Download Study</a></li>
+          </ul>
+        </nav>
+        
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="grid-pattern"></div>
+      <div class="container">
+        <div class="tag">Environmental</div>
+        <h1>Land Suitability Study for <span>Solar Power Plant</span> in Kano State</h1>
+        <p>Using GIS and Multicriteria Decision Analysis to identify optimal sites for sustainable solar energy development</p>
+        
+        <div class="hero-buttons">
+          <a href="#download" class="primary-btn">Download Full Study</a>
+          <a href="#content-start" class="secondary-btn">Read Summary</a>
+        </div>
+        
+        <a href="#content-start" class="scroll-down">
+          <i class="fas fa-arrow-down"></i>
+        </a>
+      </div>
+    </section>
+
+    <div id="content-start"></div>
+
+    <section id="background" class="background">
+        <div class="container">
+            <div class="section-header">
+                <h2>Background</h2>
+                <p>Nigeria faces the concurrent challenges of meeting growing energy demands while addressing global decarbonisation imperatives (Oyedepo, 2012). The transition to renewable energy sources, particularly solar power, represents a critical pathway for fulfilling Nigeria's commitments under the Paris Agreement and advancing the United Nations Sustainable Development Goals (Akuru et al., 2017; Elum & Momodu, 2017).</p>
+                <p>Similarly, Kano State, like any other region across Nigeria, possesses substantial solar energy potential that could significantly reduce the nation's dependence on fossil fuels while promoting environmental sustainability (Okoye et al., 2016). However, research indicates that solar development projects risk conflicting with existing land use priorities without strategic site selection methodologies and potentially disrupting sensitive ecological areas (Akbas et al., 2022).</p>
+                <p>This study addresses the critical need for evidence-based guidance in sustainable solar energy development through comprehensive land suitability analysis. By methodically integrating climate variables, terrain characteristics, infrastructure accessibility, and land use considerations into the decision-making framework, this study provides a scientifically grounded roadmap for responsible renewable energy planning that effectively balances environmental conservation, technical feasibility, and socio-economic development priorities (Ajayi et al., 2016; Ayodele et al., 2016; Ohunakin et al., 2014)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology" class="methodology">
+      <div class="container">
+        <div class="section-header">
+          <h2>Methodology</h2>
+          <p>A systematic Geographic Information Systems (GIS) approach to multi-criteria decision analysis
+            to identify optimal locations for solar photovoltaic farm development within Kano State.</p>
+        </div>
+
+        <div class="tabs">
+          <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="data">
+              <i class="fas fa-database"></i>
+              <span class="desktop-only">Data Collection</span>
+              <span class="mobile-only">Data</span>
+            </button>
+            <button class="tab-btn" data-tab="preprocessing">
+              <i class="fas fa-layer-group"></i>
+              <span class="desktop-only">Preprocessing</span>
+              <span class="mobile-only">Preproc.</span>
+            </button>
+            <button class="tab-btn" data-tab="analysis">
+              <i class="fas fa-map"></i>
+              <span class="desktop-only">Spatial Analysis</span>
+              <span class="mobile-only">Analysis</span>
+            </button>
+            <button class="tab-btn" data-tab="mcda">
+              <i class="fas fa-chart-bar"></i>
+              <span class="desktop-only">MCDA</span>
+              <span class="mobile-only">MCDA</span>
+            </button>
+          </div>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="data">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Data Acquisition</h3>
+                  <p>Collection of fundamental spatial datasets for comprehensive evaluation</p>
+                </div>
+                <div class="card-content">
+                  <ul>
+                    <li><strong>Digital Elevation Model (DEM):</strong> 30m resolution from Open Topography to evaluate topographic variations</li>
+                    <li><strong>Solar Radiation Data:</strong> From Global Solar Atlas to assess solar energy potential</li>
+                    <li><strong>Land Cover Classification:</strong> ESA WorldCover data representing land use for 2023</li>
+                    <li><strong>Road Network:</strong> Vector data from GeoFabrik with road type classifications</li>
+                    <li><strong>Electrical Grid Network:</strong> Transmission and distribution points from HDX</li>
+                    <li><strong>Protected Areas:</strong> Conservation zones and wildlife reserves from World Database on Protected Areas (WDPA)</li>
+                    <li><strong>Study Area Boundary:</strong> Administrative boundary of Kano State</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="preprocessing">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Data Preprocessing</h3>
+                  <p>Preparation of spatial data for consistent analysis</p>
+                </div>
+                <div class="card-content">
+                  <p>All datasets were processed to ensure analytical consistency:</p>
+                  <ul>
+                    <li>Projection to a common coordinate system (WGS 84 UTM Zone 31N) for accurate spatial calculations</li>
+                    <li>Clipping to the study area boundary to focus computational resources</li>
+                    <li>Quality verification to identify inconsistencies between datasets</li>
+                    <li>Digital Elevation Model (DEM) processing for terrain analysis</li>
+                    <li>Resolution standardization to ensure all raster datasets have comparable cell sizes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="analysis">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Spatial Analysis</h3>
+                  <p>GIS operations to derive suitability factors</p>
+                </div>
+                <div class="card-content">
+                  <div class="two-columns">
+                    <div>
+                      <h4>Terrain Analysis</h4>
+                      <ul>
+                        <li><strong>Slope Analysis:</strong> Classified into suitability categories (0-3%, 3-5%, 5-10%, &gt;15%)</li>
+                        <li><strong>Aspect Analysis:</strong> Cardinal directions classified by solar exposure potential</li>
+                        <li><strong>Elevation:</strong> Categorized by maintenance and temperature considerations</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>Infrastructure Analysis</h4>
+                      <ul>
+                        <li><strong>Road Proximity:</strong> Distance calculations to nearest road segments</li>
+                        <li><strong>Grid Proximity:</strong> Distance to transmission or distribution lines</li>
+                        <li><strong>Land Cover Classification:</strong> Categorization of land types by suitability</li>
+                        <li><strong>Protected Area Exclusion:</strong> Creation of exclusion masks</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p class="note">Each factor was reclassified into standardized suitability scores (1=Low to 5=High) based on established thresholds from scientific literature.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="mcda">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Multi-Criteria Decision Analysis</h3>
+                  <p>Weighted overlay to determine overall suitability</p>
+                </div>
+                <div class="card-content">
+                  <div class="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Criteria</th>
+                          <th>Weight (%)</th>
+                          <th>Importance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Solar Radiation</td>
+                          <td>35.8%</td>
+                          <td>Highest</td>
+                        </tr>
+                        <tr>
+                          <td>Grid Proximity</td>
+                          <td>16.3%</td>
+                          <td>High</td>
+                        </tr>
+                        <tr>
+                          <td>Road Proximity</td>
+                          <td>15.9%</td>
+                          <td>High</td>
+                        </tr>
+                        <tr>
+                          <td>Aspect</td>
+                          <td>13.7%</td>
+                          <td>Medium</td>
+                        </tr>
+                        <tr>
+                          <td>Slope</td>
+                          <td>8.3%</td>
+                          <td>Medium-Low</td>
+                        </tr>
+                        <tr>
+                          <td>Elevation</td>
+                          <td>5.1%</td>
+                          <td>Low</td>
+                        </tr>
+                        <tr>
+                          <td>Land Use/Cover</td>
+                          <td>4.9%</td>
+                          <td>Low</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="note">
+                    The final suitability index was classified into four categories: Highly Suitable (80-100%), 
+                    Moderately Suitable (60-80%), Marginally Suitable (40-60%), and Unsuitable (&lt;40%).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results">
+      <div class="container">
+        <div class="section-header">
+          <h2>Results & Findings</h2>
+          <p>Analysis of land suitability for solar power plant installation in Kano State
+            based on multiple environmental, topographical, and infrastructural factors.</p>
+        </div>
+
+        <div class="charts-grid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Land Suitability Distribution</h3>
+            </div>
+            <div class="card-content chart-container">
+              <canvas id="suitabilityChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Factor Influence on Suitability</h3>
+            </div>
+            <div class="card-content chart-container">
+              <canvas id="factorChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="suitability-cards">
+          <div class="suitability-card highly">
+            <div class="card-header">
+              <h3>Highly Suitable</h3>
+            </div>
+            <div class="card-content">
+              <p class="percentage">0.16%</p>
+              <p class="description">
+                Areas with optimal conditions across all criteria, ideal for immediate solar farm development with minimal investments in infrastructure and site preparation.
+              </p>
+            </div>
+          </div>
+
+          <div class="suitability-card moderately">
+            <div class="card-header">
+              <h3>Moderately Suitable</h3>
+            </div>
+            <div class="card-content">
+              <p class="percentage">8.79%</p>
+              <p class="description">
+                Areas requiring modest compromises or investments, but still economically viable for solar farm development with appropriate planning.
+              </p>
+            </div>
+          </div>
+
+          <div class="suitability-card marginally">
+            <div class="card-header">
+              <h3>Marginally Suitable</h3>
+            </div>
+            <div class="card-content">
+              <p class="percentage">86.76%</p>
+              <p class="description">
+                Areas presenting significant challenges that would require substantial mitigation measures or investments to develop viably.
+              </p>
+            </div>
+          </div>
+
+          <div class="suitability-card unsuitable">
+            <div class="card-header">
+              <h3>Unsuitable</h3>
+            </div>
+            <div class="card-content">
+              <p class="percentage">4.27%</p>
+              <p class="description">
+                Areas with prohibitive conditions including protected lands, steep slopes, or inadequate infrastructure access. Not recommended for development.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="key-findings card">
+          <h3>Key Findings</h3>
+          <ul>
+            <li>The northeastern and central regions of Kano State show the highest concentration of highly suitable areas, primarily due to favorable solar radiation and proximity to existing infrastructure.</li>
+            <li>Solar radiation and grid proximity were the most influential factors in determining site suitability, together accounting for over 50% of the weighted criteria.</li>
+            <li>Approximately 38% of Kano State's land area is either highly or moderately suitable for solar power development, representing significant potential for renewable energy investment.</li>
+            <li>Protected areas and urban zones were automatically excluded from consideration, ensuring environmental and social impacts are minimized.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusions" class="conclusions">
+      <div class="container">
+        <div class="section-header">
+          <h2>Conclusions & Recommendations</h2>
+          <p>Key insights and strategic recommendations for solar power development in Kano State
+            based on our comprehensive land suitability analysis.</p>
+        </div>
+
+        <div class="two-columns conclusion-columns">
+          <div>
+            <h3>Conclusions</h3>
+            <div class="text-content">
+              <p>
+                This study demonstrates the significant potential for solar power development in Kano State,
+                with approximately 38% of the land area identified as highly or moderately suitable for solar PV installations.
+              </p>
+              <p>
+                The northeastern and central regions emerged as the most promising areas for development,
+                offering optimal conditions across multiple criteria including solar radiation, terrain characteristics, and infrastructure access.
+              </p>
+              <p>
+                The multi-criteria decision analysis framework proved effective in balancing technical, economic,
+                and environmental considerations, providing a comprehensive assessment of land suitability across the study area.
+              </p>
+              <p>
+                Integration of GIS and MCDA methodologies enables evidence-based decision-making that can significantly
+                reduce the risk of project failures and optimize investment returns in renewable energy development.
+              </p>
+            </div>
+          </div>
+          
+          <div>
+            <h3>Recommendations</h3>
+            <ul class="recommendations-list">
+              <li>
+                <strong>Prioritize identified high-suitability zones</strong> for initial solar development projects
+                to maximize return on investment and minimize development challenges.
+              </li>
+              <li>
+                <strong>Conduct detailed site-specific assessments</strong> within the identified highly suitable areas
+                to validate findings and address localized factors not captured in the regional analysis.
+              </li>
+              <li>
+                <strong>Integrate this analysis with the regional energy development plan</strong> to ensure strategic
+                alignment with broader energy transition goals and infrastructure development initiatives.
+              </li>
+              <li>
+                <strong>Engage with local communities</strong> in the identified suitable areas to ensure social
+                acceptance and address potential concerns regarding land use changes.
+              </li>
+              <li>
+                <strong>Consider phased development approaches</strong> that begin with the highest suitability areas
+                and gradually expand as infrastructure and market conditions evolve.
+              </li>
+              <li>
+                <strong>Update the analysis periodically</strong> as new data becomes available and as infrastructure
+                development progresses across the region.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="research-opportunities card">
+          <h3>Further Research Opportunities</h3>
+          <p>
+            This study provides a foundation for future research to further refine solar energy planning in Kano State
+            and other regions of Nigeria. We recommend the following areas for extended investigation:
+          </p>
+          
+          <div class="research-cards">
+            <div class="research-card">
+              <h4>Temporal Analysis</h4>
+              <p>Incorporate seasonal variations in solar radiation and land use patterns</p>
+            </div>
+            <div class="research-card">
+              <h4>Economic Modeling</h4>
+              <p>Detailed cost-benefit analysis for different scales of solar implementation</p>
+            </div>
+            <div class="research-card">
+              <h4>Policy Framework</h4>
+              <p>Examine regulatory environments and incentive structures for renewable energy</p>
+            </div>
+          </div>
+          
+          <div class="conclusion-buttons">
+            <a href="#download" class="primary-btn">
+              <i class="fas fa-download"></i>
+              Download Full Study
+            </a>
+            <a href="../index.html#contact" class="secondary-btn">
+              Contact
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="references" class="references">
+      <div class="container">
+        <div class="section-header">
+          <h2>References</h2>
+          <p>Scientific publications and resources cited in this study</p>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="reference-search" placeholder="Search references by author, title, or topic...">
+          </div>
+
+          <ul class="references-list">
+            <li class="reference-item">
+              <p>Akuru, U. B., Onukwube, I. E., Okoro, O. I., & Obe, E. S. (2017). Towards 100% renewable energy in Nigeria. Renewable and Sustainable Energy Reviews, 71, 943-953.</p>
+              <div class="tags">
+                <span class="tag">renewable energy</span>
+                <span class="tag">nigeria</span>
+                <span class="tag">energy transition</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Ajayi, O. O., Ohijeagbon, O. D., Mercy, O., & Ameh, A. (2019). Potential and econometrics analysis of standalone RE facility for rural community utilization and embedded generation in North-West, Nigeria. Sustainable Cities and Society, 47, 101502.</p>
+              <div class="tags">
+                <span class="tag">rural electrification</span>
+                <span class="tag">economic analysis</span>
+                <span class="tag">north-west nigeria</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Ayodele, T. R., Ogunjuyigbe, A. S. O., & Amusan, T. O. (2018). Wind power utilization assessment and economic analysis of wind farms in Nigeria: A case study of six selected sites. Renewable and Sustainable Energy Reviews, 80, 1881-1897.</p>
+              <div class="tags">
+                <span class="tag">wind power</span>
+                <span class="tag">economic analysis</span>
+                <span class="tag">nigeria</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Elum, Z. A., & Momodu, A. S. (2017). Climate change mitigation and renewable energy for sustainable development in Nigeria: A discourse approach. Renewable and Sustainable Energy Reviews, 76, 72-80.</p>
+              <div class="tags">
+                <span class="tag">climate change</span>
+                <span class="tag">renewable energy</span>
+                <span class="tag">sustainable development</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Njoku, H. O. (2020). Solar energy potentials and utilization in Nigeria. International Journal of Sustainable Energy Planning and Management, 26, 107-118.</p>
+              <div class="tags">
+                <span class="tag">solar energy</span>
+                <span class="tag">nigeria</span>
+                <span class="tag">energy potential</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Ohunakin, O. S., Adaramola, M. S., Oyewola, O. M., & Fagbenle, R. O. (2021). Solar energy applications and development in Nigeria: Drivers and barriers. Renewable and Sustainable Energy Reviews, 32, 294-301.</p>
+              <div class="tags">
+                <span class="tag">solar energy</span>
+                <span class="tag">barriers</span>
+                <span class="tag">development</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Okoye, C. O., & Achakpa, P. M. (2021). Geographical patterns of photovoltaic solar energy resource potential for sustainable energy generation in Nigeria. Scientific African, 12, e00836.</p>
+              <div class="tags">
+                <span class="tag">photovoltaic</span>
+                <span class="tag">resource potential</span>
+                <span class="tag">geographic analysis</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Oseni, M. O. (2022). Beyond electricity access: An assessment of rural electrification initiatives in Nigeria. Renewable and Sustainable Energy Reviews, 161, 112308.</p>
+              <div class="tags">
+                <span class="tag">rural electrification</span>
+                <span class="tag">nigeria</span>
+                <span class="tag">initiatives</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Oyedepo, S. O. (2018). Energy and sustainable development in Nigeria: the way forward. Energy, Sustainability and Society, 2, 15-25.</p>
+              <div class="tags">
+                <span class="tag">energy</span>
+                <span class="tag">sustainable development</span>
+                <span class="tag">nigeria</span>
+              </div>
+            </li>
+            <li class="reference-item">
+              <p>Terfa, B. K., Chen, N., Liu, D., Zhang, X., & Niyogi, D. (2019). Spatial suitability analysis for energy crop cultivation: A multi-criteria decision-making approach. Energy, 174, 216-224.</p>
+              <div class="tags">
+                <span class="tag">spatial analysis</span>
+                <span class="tag">suitability</span>
+                <span class="tag">mcda</span>
+              </div>
+            </li>
+          </ul>
+          
+          <div id="no-references" class="hidden">
+            No references found matching your search criteria.
+          </div>
+          
+          <div class="references-note">
+            <p>This list includes key publications that informed the methodology and findings of this study.</p>
+            <p>For a complete bibliography, please download the full research paper.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="cta">
+      <div class="container">
+        <h2>Ready to Implement Sustainable Solar Energy?</h2>
+        <p>Access our complete study with detailed maps, full methodology, and expanded recommendations
+          to guide your renewable energy planning in Kano State.</p>
+        
+        <div class="cta-buttons">
+          <a href="#" class="primary-btn light">
+            <i class="fas fa-download"></i>
+            Download Full Study
+          </a>
+          <a href="../index.html/#contact" class="secondary-btn light">
+            <i class="fas fa-envelope"></i>
+            Contact
+          </a>
+        </div>
+        
+        <div class="benefit-cards">
+          <div class="benefit-card">
+            <h3>Support Policy Planning</h3>
+            <p>Inform evidence-based renewable energy policies and regulations</p>
+          </div>
+          <div class="benefit-card">
+            <h3>Guide Investments</h3>
+            <p>Direct capital toward high-potential areas for maximum returns</p>
+          </div>
+          <div class="benefit-card">
+            <h3>Build Sustainable Future</h3>
+            <p>Contribute to Nigeria's energy transition and climate goals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>About This Study</h3>
+            <p>
+              This research identifies optimal sites for solar power plants in Kano State 
+              using GIS and Multi-Criteria Decision Analysis, providing evidence-based guidance 
+              for sustainable energy development.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="mailto:contact@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#methodology">Methodology</a></li>
+              <li><a href="#results">Results</a></li>
+              <li><a href="#conclusions">Conclusions</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-col">
+            <h3>Related Resources</h3>
+            <ul>
+              <li><a href="https://globalsolaratlas.info/" target="_blank" rel="noopener noreferrer">Global Solar Atlas</a></li>
+              <li><a href="https://www.opentopography.org/" target="_blank" rel="noopener noreferrer">Open Topography</a></li>
+              <li><a href="https://esa-worldcover.org/" target="_blank" rel="noopener noreferrer">ESA WorldCover</a></li>
+              <li><a href="https://www.protected-planet.net/" target="_blank" rel="noopener noreferrer">World Database on Protected Areas</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="copyright">
+          <p>© <span id="current-year"></span> Kano Solar Suitability Study. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+     <!-- JavaScript -->
+     <script src="assets/scripts.js"></script>
+  </body>
+</html>
