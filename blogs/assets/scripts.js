@@ -95,7 +95,7 @@ window.addEventListener("load", function () {
   const suitabilityCtx = document.getElementById("suitabilityChart");
   if (suitabilityCtx) {
     new Chart(suitabilityCtx, {
-      type: "pie",
+      type: "bar",
       data: {
         labels: [
           "Highly Suitable",
@@ -106,7 +106,7 @@ window.addEventListener("load", function () {
         datasets: [
           {
             label: "Area (Hectares)",
-            data: [8007.78125, 162876.2005, 16489.3445, 301.53475],
+            data: [167908.7925, 769160.1525, 859601.8525, 80077.8125],
             backgroundColor: ["#2e7d32", "#f9a825", "#e65100", "#b71c1c"],
             borderWidth: 1,
           },
