@@ -65,11 +65,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- Website: [Huygens](https://huygens123.github.io/huygens.github.io)
-- Email: oaahuygens@gmail.com
+- Website: [Huygens](https://abdulquawiyy-owolabi.github.io/#blogs)
+- Email: ohhuygens@outlook.com
 - LinkedIn: [Abdulquawiyy](https://linkedin.com/in/abdulquawiyyowo)
 - Twitter: [@Huygens_OH](https://x.com/Huygens_OH)
 
 ---
 
-⭐ From [Abdulquawiyy ](https://github.com/huygens123)
+⭐ From [Abdulquawiyy ](https://github.com/abdulquawiyy-owolabi)
