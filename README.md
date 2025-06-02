@@ -1,4 +1,4 @@
-# huygens.github.io
+# Abdulquawiyy.github.io
 
 A personal website and portfolio built with html and hosted on GitHub Pages.
 
