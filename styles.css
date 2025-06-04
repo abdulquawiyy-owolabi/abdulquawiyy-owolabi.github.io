@@ -275,6 +275,7 @@ section {
 /* About Section */
 .about-section {
     background-color: #fff;
+    text-align: justify;
 }
 
 .about-container {
