@@ -19,30 +19,6 @@ This repository contains the source code for my personal website. The site showc
 - HTML5, CSS3, JavaScript
 - Bootstrap
 
-## 🛠 Installation and Setup
-
-1. Clone the repository:
-   
-   git clone https://github.com/huygens123/huygens.github.io.git
-   
-
-2. Navigate to the project directory:
-   
-   cd huygens.github.io
-   
-
-3. Install dependencies:
-   
-   npm install
-   
-
-4. Start the development server:
-   
-   npm start
-   
-
-5. Open your browser and visit http://localhost:3000
-
 ## 🌐 Deployment
 
 This site is deployed using GitHub Pages. Any changes pushed to the main branch will be automatically deployed.
