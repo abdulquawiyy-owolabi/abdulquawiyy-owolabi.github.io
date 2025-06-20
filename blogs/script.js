@@ -1,15 +1,15 @@
 // Blog Posts Data
 const blogPosts = [
-    {
+     {
         id: 1,
-        title: "Spectral Indices in Remote Sensing: Meaning and Applications (An example)",
-        excerpt: "A spectral index is a mathematical combination of two or more wavelengths that enhances the information content of the data. Spectral indices help extract insights on vegetation, soil moisture, and water quality from satellite imagery.",
-        image: "../assets/img/spectral.png",
-        category: "remote-sensing",
-        date: "2024-03-15",
-        readTime: "8 min read",
-        link: "https://medium.com/@abdulquawiyyhardisir/spectral-indices-in-remote-sensing-meaning-and-applications-an-example-ba2cdc78fa9a",
-        external: true
+        title: "Land Suitability Study for Solar Power Plant in Kano State",
+        excerpt: "GIS and AHP-based multicriteria decision analysis to identify optimal sites for solar farm development in Northern Nigeria.",
+        image: "../assets/img/solar_farm.jpg",
+        category: "gis",
+        date: "2024-05-20",
+        readTime: "15 min read",
+        link: "blogs/land suitability/index.html",
+        external: false
     },
     {
         id: 2,
@@ -17,22 +17,23 @@ const blogPosts = [
         excerpt: "Analysis of Sentinel-2 satellite imagery using machine learning to classify land cover in Iwo LGA, Osun State, Nigeria. Focused on spatial patterns, vegetation insights, and model-based classification.",
         image: "../assets/img/land_analysis.png",
         category: "machine-learning",
-        date: "2024-02-28",
+        date: "2024-03-15",
         readTime: "12 min read",
         link: "https://medium.com/@abdulquawiyyhardisir/satellite-image-classification-using-machine-learning-techniques-for-land-cover-analysis-4c93488f16af",
         external: true
     },
-    {
+     {
         id: 3,
-        title: "Land Suitability Study for Solar Power Plant in Kano State",
-        excerpt: "GIS and AHP-based multicriteria decision analysis to identify optimal sites for solar farm development in Northern Nigeria.",
-        image: "../assets/img/solar_farm.jpg",
-        category: "gis",
-        date: "2024-01-20",
-        readTime: "15 min read",
-        link: "blogs/land suitability/index.html",
-        external: false
-    }
+        title: "Spectral Indices in Remote Sensing: Meaning and Applications (An example)",
+        excerpt: "A spectral index is a mathematical combination of two or more wavelengths that enhances the information content of the data. Spectral indices help extract insights on vegetation, soil moisture, and water quality from satellite imagery.",
+        image: "../assets/img/spectral.png",
+        category: "remote-sensing",
+        date: "2023-04-22",
+        readTime: "8 min read",
+        link: "https://medium.com/@abdulquawiyyhardisir/spectral-indices-in-remote-sensing-meaning-and-applications-an-example-ba2cdc78fa9a",
+        external: true
+    },
+   
 ];
 
 // Application State

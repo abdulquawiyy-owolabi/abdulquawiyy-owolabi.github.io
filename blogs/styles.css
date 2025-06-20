@@ -371,10 +371,15 @@ body {
 }
 
 .filter-btn:hover,
-.filter-btn.active {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
+.filter-btn:focus {
+    background: var(--primary-light);
     color: white;
+    border-color: var(--primary-color);
+}
+.filter-btn.active {
+    color: var(--primary-color);
+    background: white;
+    border-color: var(--primary-color);
 }
 
 /* Blog Section */
