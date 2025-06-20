@@ -588,6 +588,8 @@
                                 <span class="btn-loading" style="display: none;">Sending...</span>
                             </button>
                         </form>
+                        <div id="form-success-message" style="display:none; color: #2563eb; font-weight:600; margin-top:1rem; text-align:center;">Thank you! Your message has been sent.</div>
+                        </form>
                     </div>
                 </div>
 
@@ -666,5 +668,23 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    <script>
+    // Show success message after form submission
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('contactForm');
+      var successMsg = document.getElementById('form-success-message');
+      if(form) {
+        form.addEventListener('submit', function(e) {
+          // Let Formspree handle the submission, but show message after submit
+          setTimeout(function() {
+            if(successMsg) {
+              successMsg.style.display = 'block';
+              form.reset();
+            }
+          }, 500); // Delay to allow Formspree to process
+        });
+      }
+    });
+    </script>
 </body>
 </html>
