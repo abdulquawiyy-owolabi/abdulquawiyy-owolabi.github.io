@@ -600,6 +600,10 @@ section {
     font-size: 0.9rem;
     line-height: 1.5;
 }
+.view-all {
+      font-weight: bold;
+        color: #0077cc;
+    }
 
 /* Testimonials Section */
 .freelance-testimonials {
