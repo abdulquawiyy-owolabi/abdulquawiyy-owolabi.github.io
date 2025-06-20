@@ -8,7 +8,7 @@ const blogPosts = [
         category: "gis",
         date: "2024-05-20",
         readTime: "15 min read",
-        link: "blogs/land suitability/index.html",
+        link: "../blogs/land suitability/index.html",
         external: false
     },
     {
