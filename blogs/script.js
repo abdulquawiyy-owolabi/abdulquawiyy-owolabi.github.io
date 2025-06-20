@@ -33,106 +33,106 @@ const blogPosts = [
         link: "blogs/land suitability/index.html",
         external: false
     },
-    {
-        id: 4,
-        title: "Change Detection Analysis Using Landsat Time Series",
-        excerpt: "Comprehensive analysis of land cover changes over time using multi-temporal Landsat imagery and advanced change detection algorithms.",
-        image: "assets/img/change_detection.jpg",
-        category: "remote-sensing",
-        date: "2024-03-01",
-        readTime: "10 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 5,
-        title: "Urban Heat Island Analysis Using Thermal Remote Sensing",
-        excerpt: "Investigating urban heat island effects in major Nigerian cities using MODIS and Landsat thermal infrared data and spatial analysis techniques.",
-        image: "assets/img/urban_heat.jpg",
-        category: "environment",
-        date: "2024-02-15",
-        readTime: "14 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 6,
-        title: "Machine Learning for Crop Type Classification",
-        excerpt: "Implementing deep learning models for accurate crop type mapping using multi-spectral satellite imagery and ground truth data.",
-        image: "assets/img/crop_classification.jpg",
-        category: "machine-learning",
-        date: "2024-01-30",
-        readTime: "18 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 7,
-        title: "Flood Risk Assessment Using GIS and Remote Sensing",
-        excerpt: "Developing a comprehensive flood risk assessment model using digital elevation models, rainfall data, and historical flood records.",
-        image: "assets/img/flood_assessment.jpg",
-        category: "environment",
-        date: "2024-01-10",
-        readTime: "16 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 8,
-        title: "Spatial Analysis of Deforestation Patterns in West Africa",
-        excerpt: "Analyzing deforestation trends and patterns in West African forests using Google Earth Engine and statistical modeling techniques.",
-        image: "assets/img/deforestation.jpg",
-        category: "analysis",
-        date: "2023-12-20",
-        readTime: "20 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 9,
-        title: "NDVI Time Series Analysis for Vegetation Monitoring",
-        excerpt: "Long-term vegetation health monitoring using NDVI time series analysis and trend detection algorithms.",
-        image: "assets/img/ndvi_analysis.jpg",
-        category: "remote-sensing",
-        date: "2023-12-05",
-        readTime: "11 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 10,
-        title: "Building Automated Geospatial Data Pipelines",
-        excerpt: "Creating efficient data processing workflows for large-scale geospatial data using Python, GDAL, and cloud computing platforms.",
-        image: "assets/img/data_pipeline.jpg",
-        category: "gis",
-        date: "2023-11-25",
-        readTime: "13 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 11,
-        title: "Water Quality Monitoring Using Sentinel-2 Imagery",
-        excerpt: "Developing algorithms to assess water quality parameters in lakes and rivers using multispectral satellite imagery.",
-        image: "assets/img/water_quality.jpg",
-        category: "environment",
-        date: "2023-11-10",
-        readTime: "9 min read",
-        link: "#",
-        external: false
-    },
-    {
-        id: 12,
-        title: "Integration of IoT Sensors with GIS for Smart Agriculture",
-        excerpt: "Combining Internet of Things sensors with GIS technology to create precision agriculture solutions for optimal crop management.",
-        image: "assets/img/iot_agriculture.jpg",
-        category: "gis",
-        date: "2023-10-28",
-        readTime: "17 min read",
-        link: "#",
-        external: false
-    }
-];
+//     {
+//         id: 4,
+//         title: "Change Detection Analysis Using Landsat Time Series",
+//         excerpt: "Comprehensive analysis of land cover changes over time using multi-temporal Landsat imagery and advanced change detection algorithms.",
+//         image: "assets/img/change_detection.jpg",
+//         category: "remote-sensing",
+//         date: "2024-03-01",
+//         readTime: "10 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 5,
+//         title: "Urban Heat Island Analysis Using Thermal Remote Sensing",
+//         excerpt: "Investigating urban heat island effects in major Nigerian cities using MODIS and Landsat thermal infrared data and spatial analysis techniques.",
+//         image: "assets/img/urban_heat.jpg",
+//         category: "environment",
+//         date: "2024-02-15",
+//         readTime: "14 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 6,
+//         title: "Machine Learning for Crop Type Classification",
+//         excerpt: "Implementing deep learning models for accurate crop type mapping using multi-spectral satellite imagery and ground truth data.",
+//         image: "assets/img/crop_classification.jpg",
+//         category: "machine-learning",
+//         date: "2024-01-30",
+//         readTime: "18 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 7,
+//         title: "Flood Risk Assessment Using GIS and Remote Sensing",
+//         excerpt: "Developing a comprehensive flood risk assessment model using digital elevation models, rainfall data, and historical flood records.",
+//         image: "assets/img/flood_assessment.jpg",
+//         category: "environment",
+//         date: "2024-01-10",
+//         readTime: "16 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 8,
+//         title: "Spatial Analysis of Deforestation Patterns in West Africa",
+//         excerpt: "Analyzing deforestation trends and patterns in West African forests using Google Earth Engine and statistical modeling techniques.",
+//         image: "assets/img/deforestation.jpg",
+//         category: "analysis",
+//         date: "2023-12-20",
+//         readTime: "20 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 9,
+//         title: "NDVI Time Series Analysis for Vegetation Monitoring",
+//         excerpt: "Long-term vegetation health monitoring using NDVI time series analysis and trend detection algorithms.",
+//         image: "assets/img/ndvi_analysis.jpg",
+//         category: "remote-sensing",
+//         date: "2023-12-05",
+//         readTime: "11 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 10,
+//         title: "Building Automated Geospatial Data Pipelines",
+//         excerpt: "Creating efficient data processing workflows for large-scale geospatial data using Python, GDAL, and cloud computing platforms.",
+//         image: "assets/img/data_pipeline.jpg",
+//         category: "gis",
+//         date: "2023-11-25",
+//         readTime: "13 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 11,
+//         title: "Water Quality Monitoring Using Sentinel-2 Imagery",
+//         excerpt: "Developing algorithms to assess water quality parameters in lakes and rivers using multispectral satellite imagery.",
+//         image: "assets/img/water_quality.jpg",
+//         category: "environment",
+//         date: "2023-11-10",
+//         readTime: "9 min read",
+//         link: "#",
+//         external: false
+//     },
+//     {
+//         id: 12,
+//         title: "Integration of IoT Sensors with GIS for Smart Agriculture",
+//         excerpt: "Combining Internet of Things sensors with GIS technology to create precision agriculture solutions for optimal crop management.",
+//         image: "assets/img/iot_agriculture.jpg",
+//         category: "gis",
+//         date: "2023-10-28",
+//         readTime: "17 min read",
+//         link: "#",
+//         external: false
+//     }
+// ];
 
 // Application State
 let currentPosts = [];
