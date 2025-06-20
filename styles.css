@@ -1,27 +1,34 @@
-/* Base Styles - Geospatial Theme */
+/* Base Styles */
 :root {
-    --primary-color: #2E7D32;
-    --primary-dark: #1B5E20;
-    --primary-light: #4CAF50;
-    --secondary-color: #37474F;
-    --accent-color: #0277BD;
-    --accent-light: #03A9F4;
-    --earth-brown: #5D4037;
-    --terrain-green: #388E3C;
-    --water-blue: #1976D2;
-    --light-color: #F1F8E9;
-    --dark-color: #263238;
-    --text-color: #212121;
-    --text-light: #546E7A;
-    --border-color: #E8F5E8;
-    --success-color: #4CAF50;
-    --warning-color: #FF9800;
-    --danger-color: #F44336;
-    --box-shadow: 0 5px 15px rgba(46, 125, 50, 0.15);
+    --primary-color: #2F4F4F;       
+    --primary-dark: #1C313A;         
+    --primary-light: #4E6E5D;        
+    
+    --secondary-color: #3E4C59;      
+    --accent-color: #006494;         
+    --accent-light: #669BBC;         
+
+    --earth-brown: #4B3621;          
+    --terrain-green: #556B2F;        
+    --water-blue: #1E3F66;           
+
+    --light-color: #F5F5F5;          
+    --dark-color: #1B1F23;           
+    --text-color: #2C2C2C;           
+    --text-light: #6C757D;           
+
+    --border-color: #DADADA;        
+    --success-color: #3B873E;        
+    --warning-color: #D89216;       
+    --danger-color: #C0392B;         
+
+    --box-shadow: 0 4px 12px rgba(47, 79, 79, 0.15); 
     --transition: all 0.3s ease-in-out;
+
     --sidebar-width: 280px;
     --sidebar-collapse-width: 80px;
 }
+
 
 * {
     margin: 0;
