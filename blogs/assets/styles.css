@@ -1038,6 +1038,7 @@
     color: #222;
     text-decoration: none;
     transition: var(--transition);
+    font-weight: 700;
 }
 
 .footer-section a:hover {
