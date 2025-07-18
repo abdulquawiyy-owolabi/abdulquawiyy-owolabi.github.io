@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Land Suitability for Solar Power in Kano State | GIS and MCDA Study</title>
-    <meta name="description" content="Research study on land suitability analysis for solar power plants in Kano State, Nigeria using GIS and Multi-Criteria Decision Analysis." />
-    <meta name="author" content="Solar Energy Research" />
+    <meta name="description" content="project study on land suitability analysis for solar power plants in Kano State, Nigeria using GIS and Multi-Criteria Decision Analysis." />
+    <meta name="author" content="Solar Energy project" />
 
     <meta property="og:title" content="Land Suitability for Solar Power in Kano State | GIS and MCDA Study" />
-    <meta property="og:description" content="Research study on land suitability analysis for solar power plants in Kano State, Nigeria using GIS and Multi-Criteria Decision Analysis." />
+    <meta property="og:description" content="project study on land suitability analysis for solar power plants in Kano State, Nigeria using GIS and Multi-Criteria Decision Analysis." />
     <meta property="og:type" content="website" />
 
     
@@ -72,7 +72,7 @@
             <div class="section-header">
                 <h2>Background</h2>
                 <p>Nigeria faces the concurrent challenges of meeting growing energy demands while addressing global decarbonisation imperatives (Oyedepo, 2012). The transition to renewable energy sources, particularly solar power, represents a critical pathway for fulfilling Nigeria's commitments under the Paris Agreement and advancing the United Nations Sustainable Development Goals (Akuru et al., 2017; Elum & Momodu, 2017).</p>
-                <p>Similarly, Kano State, like any other region across Nigeria, possesses substantial solar energy potential that could significantly reduce the nation's dependence on fossil fuels while promoting environmental sustainability (Okoye et al., 2016). However, research indicates that solar development projects risk conflicting with existing land use priorities without strategic site selection methodologies and potentially disrupting sensitive ecological areas (Akbas et al., 2022).</p>
+                <p>Similarly, Kano State, like any other region across Nigeria, possesses substantial solar energy potential that could significantly reduce the nation's dependence on fossil fuels while promoting environmental sustainability (Okoye et al., 2016). However, project indicates that solar development projects risk conflicting with existing land use priorities without strategic site selection methodologies and potentially disrupting sensitive ecological areas (Akbas et al., 2022).</p>
                 <p>This study addresses the critical need for evidence-based guidance in sustainable solar energy development through comprehensive land suitability analysis. By methodically integrating climate variables, terrain characteristics, infrastructure accessibility, and land use considerations into the decision-making framework, this study provides a scientifically grounded roadmap for responsible renewable energy planning that effectively balances environmental conservation, technical feasibility, and socio-economic development priorities (Ajayi et al., 2016; Ayodele et al., 2016; Ohunakin et al., 2014)</p>
             </div>
         </div>
@@ -284,15 +284,33 @@
                     </div>
                     <div class="map-description">
                       <p>This suitability map shows the spatial distribution of optimal locations for solar power development across Kano State based on the multi-criteria decision analysis. The western and northwestern regions (Bichi, Gwazo, Shanomo and Tsanaya Local Government) have the highest concentration of highly suitable areas (dark green), while unsuitable areas (red) are primarily concentrated around protected zones and areas with steeper terrain.</p>
-                      <!-- <p>
-                        <a href="https://github.com/abdulquawiyy-owolabiSolar-Farm-Suitability-Study/tree/main/maps"> You can interract with the intermediate maps here</a>
-                      </p> -->
+                      <p>Areas classified as highly suitable are characterized by optimal solar radiation, proximity to existing infrastructure, and favorable terrain conditions, making them ideal candidates for solar farm development.</p>
+                      <p>Moderately suitable areas (light green) may require some investment in infrastructure or mitigation measures but still present viable opportunities for solar energy projects. Marginally suitable areas (yellow) pose significant challenges and may require substantial investment to develop effectively, while unsuitable areas (red) are not recommended for solar farm development due to prohibitive conditions like protected lands and steep slopes.</p>
                     </div>
+              
                   </div>
                 </div>
-              </div>
+            </div>
         </div>
+<div id="content-start"></div>
 
+<section id="available-land-map" class="map-visualization">
+  <div class="container">
+    <h3>Available Land for Solar Power Development</h3>
+    <p>This map illustrates the areas in Kano State that are available and suitable for solar power development, based on the criteria established in the study.</p>
+    <p>Areas classified as available are those that meet the minimum suitability thresholds and do not fall within protected zones or other unsuitable classifications. This visualization aids in identifying potential sites for future solar energy projects.</p>
+    <p>Click on the image to view a larger version.</p>
+    <div class="map-container">
+      <a href="../assets/images/Percentage Area Available.jpg" target="_blank">
+        <img src="../assets/images/Percentage Area Available.jpg" alt="Available Land Map for Solar Power in Kano State" class="available-land-map">
+      </a>
+    </div>
+  </div>
+</section>
+        <div class="section-header">
+          <h2>Land Suitability Analysis</h2>
+          <p>Visual representation of land suitability distribution and factor influence on solar power development.</p>
+        </div>
         <div class="charts-grid">
           <div class="card">
             <div class="card-header">
@@ -312,6 +330,31 @@
             </div>
           </div>
         </div>
+
+       <div class="container">
+    <h3>Top 10 Local Governments by Average PV Output per Day</h3>
+    <table class="pv-table">
+      <thead>
+        <tr>
+          <th>Local Government</th>
+          <th>Avg PV Output (kWh/day)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Bichi</td><td>5.8</td></tr>
+        <tr><td>Gwarzo</td><td>5.7</td></tr>
+        <tr><td>Shanono</td><td>5.6</td></tr>
+        <tr><td>Bagwai</td><td>5.5</td></tr>
+        <tr><td>Tsanyawa</td><td>5.5</td></tr>
+        <tr><td>Kunchi</td><td>5.4</td></tr>
+        <tr><td>Minjibir</td><td>5.3</td></tr>
+        <tr><td>Tofa</td><td>5.3</td></tr>
+        <tr><td>Rimin Gado</td><td>5.2</td></tr>
+        <tr><td>Madobi</td><td>5.2</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Values are illustrative. Replace with your actual PV output data if available.</p>
+  </div>
 
         <div class="suitability-cards">
           <div class="suitability-card highly">
@@ -366,10 +409,11 @@
         <div class="key-findings card">
           <h3>Key Findings</h3>
           <ul>
-            <li>The western and the northwestern part of Kano State show the highest concentration of highly suitable areas, primarily due to favorable solar radiation and proximity to existing infrastructure.</li>
+            <li>Northwestern regions, which consist of Gwarzo, Shanomo Bagwai, and Tsanyawa local governments, show the highest potential, with their usable lands being 80% above.</li>
             <li>Solar radiation and grid proximity were the most influential factors in determining site suitability, together accounting for over 50% of the weighted criteria.</li>
             <li>Approximately 49% of Kano State's land area is either highly or moderately suitable for solar power development, representing significant potential for renewable energy investment.</li>
             <li>Protected areas and water body area were automatically excluded from consideration, ensuring environmental and social impacts are minimized.</li>
+            <li>Rural communities stand to benefit significantly from solar power development, both in terms of energy access and economic opportunities.</li>
           </ul>
         </div>
       </div>
@@ -400,6 +444,9 @@
               <p>
                 Integration of GIS and MCDA methodologies enables evidence-based decision-making that can significantly
                 reduce the risk of project failures and optimize investment returns in renewable energy development.
+              </p>
+              <p>
+                The findings underscore the importance of strategic site selection in advancing Nigeria's renewable energy transition while minimizing environmental impacts and maximizing socio-economic benefits.
               </p>
             </div>
           </div>
@@ -435,23 +482,23 @@
           </div>
         </div>
 
-        <div class="research-opportunities card">
-          <h3>Further Research Opportunities</h3>
+        <div class="project-opportunities card">
+          <h3>Further project Opportunities</h3>
           <p>
-            This study provides a foundation for future research to further refine solar energy planning in Kano State
+            This study provides a foundation for future project to further refine solar energy planning in Kano State
             and other regions of Nigeria. We recommend the following areas for extended investigation:
           </p>
           
-          <div class="research-cards">
-            <div class="research-card">
+          <div class="project-cards">
+            <div class="project-card">
               <h4>Temporal Analysis</h4>
               <p>Incorporate seasonal variations in solar radiation and land use patterns</p>
             </div>
-            <div class="research-card">
+            <div class="project-card">
               <h4>Economic Modeling</h4>
               <p>Detailed cost-benefit analysis for different scales of solar implementation</p>
             </div>
-            <div class="research-card">
+            <div class="project-card">
               <h4>Policy Framework</h4>
               <p>Examine regulatory environments and incentive structures for renewable energy</p>
             </div>
@@ -572,8 +619,7 @@
           </div>
           
           <div class="references-note">
-            <p>This list includes key publications that were used for the methodology and findings of this study.</p>
-            <p>For a complete bibliography, please download the full research paper.</p>
+            <p>This list includes key publications that were used for the methodology and findings of this project.</p>
           </div>
         </div>
       </div>
@@ -595,21 +641,7 @@
             Contact
           </a>
         </div>
-        
-        <!-- <div class="benefit-cards">
-          <div class="benefit-card">
-            <h3>Support Policy Planning</h3>
-            <p>Inform evidence-based renewable energy policies and regulations</p>
-          </div>
-          <div class="benefit-card">
-            <h3>Guide Investments</h3>
-            <p>Direct capital toward high-potential areas for maximum returns</p>
-          </div>
-          <div class="benefit-card">
-            <h3>Build Sustainable Future</h3>
-            <p>Contribute to Nigeria's energy transition and climate goals</p>
-          </div>
-        </div> -->
+        <p class="note">For more information or to discuss potential collaborations, please reach out via the contact form.</p>
       </div>
     </section>
 
@@ -619,7 +651,7 @@
           <div class="footer-col">
             <h3>About This Study</h3>
             <p>
-              This research identifies optimal sites for solar power plants in Kano State 
+              This project identifies optimal sites for solar power plants in Kano State 
               using GIS and Multi-Criteria Decision Analysis, providing evidence-based guidance 
               for sustainable energy development.
             </p>
