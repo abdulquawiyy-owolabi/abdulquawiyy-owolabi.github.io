@@ -1,6 +1,4 @@
-/* ===== VARIABLES ===== */
-
-
+/* Land Suitability Analysis Project */
 :root {
     --color-white: #ffffff;
     --color-black: #000000;
@@ -853,6 +851,97 @@
     flex-wrap: wrap;
   }
   
+  .conclusion-buttons a {
+    text-decoration: none;
+  }
+
+  /* Table Div */
+  /* Add to styles.css */
+.pv-table-section {
+  margin: 3rem 0;
+}
+
+.pv-table-card {
+  background: linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(80, 70, 180, 0.08);
+  padding: 2.5rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pv-table-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.pv-table-icon {
+  font-size: 2.2rem;
+  color: #6d28d9;
+  margin-bottom: 0.5rem;
+}
+
+.pv-table-header h3 {
+  font-size: 1.35rem;
+  color: #312e81;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.pv-table-subtitle {
+  color: #5b21b6;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.pv-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(80, 70, 180, 0.06);
+  font-family: 'Inter', sans-serif;
+}
+
+.pv-table th, .pv-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+
+.pv-table th {
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #c4b5fd;
+}
+
+.pv-table tr {
+  transition: background 0.2s;
+}
+
+.pv-table tbody tr:nth-child(even) {
+  background: #f5f3ff;
+}
+
+.pv-table td {
+  font-size: 1rem;
+  color: #312e81;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.pv-table tbody tr:hover {
+  background: #ddd6fe;
+}
+
+.pv-table-section .note {
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-top: 1.2rem;
+}
   /* ===== REFERENCES SECTION ===== */
   .references {
     padding: 5rem 0;
