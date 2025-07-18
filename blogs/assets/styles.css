@@ -856,15 +856,15 @@
   }
 
   /* Table Div */
-  /* Add to styles.css */
 .pv-table-section {
   margin: 3rem 0;
 }
 
+
 .pv-table-card {
-  background: linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 100%);
+  /* background: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%); */
   border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(80, 70, 180, 0.08);
+  box-shadow: 0 4px 24px rgba(255, 193, 7, 0.08);
   padding: 2.5rem 2rem;
   max-width: 700px;
   margin: 0 auto;
@@ -875,21 +875,15 @@
   margin-bottom: 1.5rem;
 }
 
-.pv-table-icon {
-  font-size: 2.2rem;
-  color: #6d28d9;
-  margin-bottom: 0.5rem;
-}
-
 .pv-table-header h3 {
   font-size: 1.35rem;
-  color: #312e81;
+  color: #FF9800; /* Sun orange */
   margin-bottom: 0.3rem;
   font-weight: 700;
 }
 
 .pv-table-subtitle {
-  color: #5b21b6;
+  color: #FFA500; /* Sun orange */
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -898,10 +892,10 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background: #fff;
+  background: #fffde7;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 6px rgba(80, 70, 180, 0.06);
+  box-shadow: 0 1px 6px rgba(255, 193, 7, 0.06);
   font-family: 'Inter', sans-serif;
 }
 
@@ -911,11 +905,11 @@
 }
 
 .pv-table th {
-  background: #ede9fe;
-  color: #6d28d9;
+  background: #FFE082;
+  color: #FF9800;
   font-size: 1rem;
   font-weight: 600;
-  border-bottom: 2px solid #c4b5fd;
+  border-bottom: 2px solid #FFD54F;
 }
 
 .pv-table tr {
@@ -923,30 +917,31 @@
 }
 
 .pv-table tbody tr:nth-child(even) {
-  background: #f5f3ff;
+  background: #FFF8E1;
 }
 
 .pv-table td {
   font-size: 1rem;
-  color: #312e81;
-  border-bottom: 1px solid #e0e7ff;
+  color: #FF9800;
+  border-bottom: 1px solid #FFE082;
 }
 
 .pv-table tbody tr:hover {
-  background: #ddd6fe;
+  background: #FFE0B2;
 }
 
 .pv-table-section .note {
   text-align: center;
-  color: #6b7280;
+  color: #FF9800;
   font-size: 0.95rem;
   margin-top: 1.2rem;
 }
-  /* ===== REFERENCES SECTION ===== */
-  .references {
-    padding: 5rem 0;
-    background-color: var(--color-gray-50);
-  }
+
+/* ===== REFERENCES SECTION ===== */
+.references {
+  padding: 5rem 0;
+  background-color: var(--color-gray-50);
+}
   
   .search-container {
     max-width: 800px;
