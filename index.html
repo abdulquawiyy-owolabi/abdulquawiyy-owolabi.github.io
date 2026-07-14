@@ -8,239 +8,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#101c22;
-  --ink-2:#16262d;
-  --ink-3:#1d323b;
-  --line:#2b4249;
-  --paper:#f1ede1;
-  --paper-dim:#c9c3ae;
-  --moss:#89ab84;
-  --moss-dim:#4f6b52;
-  --amber:#d1a256;
-  --sky:#7fb2c9;
-  --text-hi:#f4f1e6;
-  --text-mid:#b9c2be;
-  --text-lo:#7c8985;
-  --radius:2px;
-  --max:1180px;
-  --display:'Space Grotesk',sans-serif;
-  --body:'Inter',sans-serif;
-  --mono:'IBM Plex Mono',monospace;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--ink);
-  color:var(--text-mid);
-  font-family:var(--body);
-  font-size:16px;
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none;}
-img{max-width:100%;display:block;}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 40px;}
-.eyebrow{
-  font-family:var(--mono);
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--amber);
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.eyebrow::before{content:'';width:22px;height:1px;background:var(--amber);display:inline-block;}
-h1,h2,h3,h4{font-family:var(--display);color:var(--text-hi);font-weight:600;letter-spacing:-.01em;}
-h2.section-title{font-size:clamp(28px,4vw,40px);margin-top:10px;}
-::selection{background:var(--amber);color:var(--ink);}
-
-/* contour texture */
-.contours{position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background-image:
-    repeating-radial-gradient(circle at 82% 18%, transparent 0 26px, rgba(137,171,132,.10) 27px 28px, transparent 29px 54px),
-    repeating-radial-gradient(circle at 8% 92%, transparent 0 34px, rgba(209,162,86,.08) 35px 36px, transparent 37px 68px);
-}
-
-/* nav */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(16,28,34,.86);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{max-width:var(--max);margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:var(--mono);font-size:13px;color:var(--text-hi);letter-spacing:.04em;}
-.logo span{color:var(--moss);}
-nav ul{list-style:none;display:flex;gap:34px;}
-nav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid);transition:color .2s;position:relative;}
-nav a:hover{color:var(--text-hi);}
-.nav-cta{border:1px solid var(--moss-dim);color:var(--moss)!important;padding:8px 16px;border-radius:var(--radius);}
-.nav-cta:hover{background:var(--moss);color:var(--ink)!important;border-color:var(--moss);}
-.menu-btn{display:none;background:none;border:none;color:var(--text-hi);font-size:22px;cursor:pointer;}
-@media(max-width:860px){
-  nav ul{position:fixed;top:68px;left:0;right:0;flex-direction:column;background:var(--ink-2);padding:20px 40px 30px;gap:18px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s ease;}
-  nav ul.open{transform:translateY(0);}
-  .menu-btn{display:block;}
-}
-
-/* hero */
-.hero{
-  position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  padding:140px 0 80px;overflow:hidden;
-  border-bottom:1px solid var(--line);
-}
-.hero .grid-lines{position:absolute;inset:0;
-  background-image:linear-gradient(rgba(137,171,132,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(137,171,132,.06) 1px,transparent 1px);
-  background-size:64px 64px;mask-image:radial-gradient(circle at 70% 40%, black, transparent 72%);
-}
-.hero-inner{position:relative;z-index:2;}
-.coord{font-family:var(--mono);font-size:13px;color:var(--sky);letter-spacing:.05em;margin-bottom:26px;}
-.hero h1{font-size:clamp(42px,7vw,84px);line-height:.98;margin-bottom:20px;}
-.hero h1 em{font-style:normal;color:var(--moss);}
-.hero .role{font-family:var(--mono);font-size:16px;color:var(--amber);letter-spacing:.03em;margin-bottom:22px;}
-.hero p.lede{max-width:560px;font-size:17px;color:var(--text-mid);margin-bottom:38px;}
-.btn-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:70px;}
-.btn{
-  font-family:var(--mono);font-size:13px;letter-spacing:.04em;padding:14px 26px;border-radius:var(--radius);
-  display:inline-flex;align-items:center;gap:8px;transition:all .2s;
-}
-.btn-primary{background:var(--moss);color:var(--ink);}
-.btn-primary:hover{background:var(--text-hi);}
-.btn-ghost{border:1px solid var(--line);color:var(--text-hi);}
-.btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
-.stat-row{display:grid;grid-template-columns:repeat(4,auto);gap:48px;}
-.stat b{display:block;font-family:var(--display);font-size:30px;color:var(--text-hi);}
-.stat span{font-family:var(--mono);font-size:11.5px;color:var(--text-lo);text-transform:uppercase;letter-spacing:.08em;}
-@media(max-width:700px){.stat-row{grid-template-columns:repeat(2,auto);row-gap:26px;}}
-
-section{padding:110px 0;position:relative;border-bottom:1px solid var(--line);}
-
-/* about */
-.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;margin-top:46px;align-items:start;}
-.about-grid p{margin-bottom:18px;font-size:16px;color:var(--text-mid);}
-.about-grid p strong{color:var(--text-hi);font-weight:500;}
-.specialties{display:flex;flex-direction:column;gap:0;}
-.spec-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:1px solid var(--line);font-family:var(--mono);font-size:13px;}
-.spec-row:last-child{border-bottom:1px solid var(--line);}
-.spec-row span:first-child{color:var(--text-hi);}
-.spec-row span:last-child{color:var(--moss);}
-.profile-photo{width:100%;max-width:260px;aspect-ratio:1/1;overflow:hidden;border-radius:50%;border:1px solid var(--line);position:relative;margin:0 auto;}
-.profile-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.15) contrast(1.05);}
-.profile-photo::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(137,171,132,.15);pointer-events:none;}
-.detail-card{margin-top:26px;background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;}
-.detail-card div{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12.5px;padding:8px 0;border-bottom:1px dashed var(--line);color:var(--text-mid);}
-.detail-card div:last-child{border-bottom:none;}
-.detail-card div span:last-child{color:var(--text-hi);}
-@media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
-
-/* skills - legend */
-.legend-note{font-size:15px;color:var(--text-mid);max-width:600px;margin:16px 0 50px;}
-.legend{display:grid;grid-template-columns:repeat(2,1fr);gap:0 60px;}
-.leg-item{padding:18px 0;border-top:1px solid var(--line);}
-.leg-item:nth-last-child(-n+2){border-bottom:1px solid var(--line);}
-.leg-top{display:flex;justify-content:space-between;margin-bottom:10px;font-family:var(--mono);font-size:13px;}
-.leg-top b{color:var(--text-hi);font-weight:500;font-family:var(--body);font-size:14.5px;}
-.leg-top span{color:var(--amber);}
-.scale{position:relative;height:6px;background:var(--ink-3);border-radius:1px;overflow:hidden;}
-.scale i{position:absolute;left:0;top:0;bottom:0;background:var(--moss);}
-.scale::after{content:'';position:absolute;inset:0;
-  background-image:repeating-linear-gradient(90deg,rgba(16,28,34,.9) 0 1px,transparent 1px 10%);
-}
-@media(max-width:700px){.legend{grid-template-columns:1fr;}}
-
-/* timeline */
-.tl-wrap{margin-top:50px;position:relative;}
-.tl-item{display:grid;grid-template-columns:150px 24px 1fr;gap:0;position:relative;}
-.tl-date{font-family:var(--mono);font-size:12px;color:var(--text-lo);padding-top:4px;}
-.tl-mid{display:flex;flex-direction:column;align-items:center;}
-.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--amber);border:2px solid var(--ink);box-shadow:0 0 0 1px var(--amber);margin-top:6px;flex-shrink:0;}
-.tl-bar{width:1px;flex:1;background:var(--line);margin-top:4px;}
-.tl-item:last-child .tl-bar{display:none;}
-.tl-body{padding:0 0 50px 26px;}
-.tl-body h4{font-size:19px;margin-bottom:4px;}
-.tl-body .org{font-family:var(--mono);font-size:12.5px;color:var(--sky);margin-bottom:14px;display:block;}
-.tl-body ul{padding-left:18px;color:var(--text-mid);font-size:14.5px;}
-.tl-body ul li{margin-bottom:6px;}
-.tl-tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--moss);border:1px solid var(--moss-dim);padding:2px 8px;border-radius:12px;margin-bottom:12px;}
-@media(max-width:640px){.tl-item{grid-template-columns:24px 1fr;}.tl-date{display:none;}}
-
-.edu-block{margin-top:60px;padding-top:40px;border-top:1px solid var(--line);}
-.edu-block h3{font-size:14px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--text-lo);margin-bottom:20px;}
-.edu-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:16px 0;border-bottom:1px solid var(--line);}
-.edu-row b{color:var(--text-hi);font-family:var(--display);font-size:17px;font-weight:500;}
-.edu-row .org{font-family:var(--mono);font-size:12.5px;color:var(--text-mid);display:block;margin-top:3px;}
-.edu-row .date{font-family:var(--mono);font-size:12px;color:var(--text-lo);white-space:nowrap;}
-
-/* case study */
-.case-intro{margin-top:46px;display:grid;grid-template-columns:220px 1fr;gap:50px;}
-.case-meta{font-family:var(--mono);font-size:12.5px;color:var(--text-mid);}
-.case-meta div{padding:12px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:4px;}
-.case-meta div:last-child{border-bottom:1px solid var(--line);}
-.case-meta span:first-child{color:var(--text-lo);text-transform:uppercase;letter-spacing:.06em;font-size:11px;}
-.case-meta span:last-child{color:var(--text-hi);}
-.case-body p{margin-bottom:18px;font-size:15.5px;color:var(--text-mid);}
-.case-body p strong{color:var(--text-hi);font-weight:500;}
-.case-body h4{font-size:16px;margin:32px 0 14px;color:var(--amber);font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-weight:500;}
-@media(max-width:820px){.case-intro{grid-template-columns:1fr;}}
-
-/* projects */
-.proj-grid{margin-top:46px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
-.proj-card{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,transform .25s;}
-.proj-card:hover{border-color:var(--moss-dim);transform:translateY(-3px);}
-.proj-img{aspect-ratio:16/10;overflow:hidden;background:var(--ink-3);}
-.proj-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
-.proj-card:hover .proj-img img{transform:scale(1.06);}
-.proj-body{padding:24px 26px 28px;}
-.locator{font-family:var(--mono);font-size:11px;color:var(--sky);letter-spacing:.03em;margin-bottom:10px;display:block;}
-.proj-body h4{font-size:18px;margin-bottom:10px;line-height:1.3;}
-.proj-body p{font-size:14px;color:var(--text-mid);margin-bottom:16px;}
-.proj-stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
-.proj-stats div{font-family:var(--mono);font-size:11px;color:var(--text-lo);}
-.proj-stats div b{color:var(--amber);display:block;font-size:14px;font-family:var(--display);}
-.proj-link{font-family:var(--mono);font-size:12.5px;color:var(--moss);display:inline-flex;align-items:center;gap:6px;}
-.proj-link:hover{color:var(--text-hi);}
-@media(max-width:760px){.proj-grid{grid-template-columns:1fr;}}
-
-/* blog */
-.blog-list{margin-top:46px;}
-.blog-row{display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:baseline;padding:26px 0;border-top:1px solid var(--line);}
-.blog-row:last-child{border-bottom:1px solid var(--line);}
-.blog-row time{font-family:var(--mono);font-size:12px;color:var(--text-lo);}
-.blog-row h4{font-size:17px;font-weight:500;margin-bottom:6px;}
-.blog-row p{font-size:14px;color:var(--text-mid);max-width:520px;}
-.blog-row a.rd{font-family:var(--mono);font-size:12px;color:var(--moss);white-space:nowrap;}
-.blog-row a.rd:hover{color:var(--text-hi);}
-@media(max-width:700px){.blog-row{grid-template-columns:1fr;gap:6px;}}
-
-/* contact / footer */
-footer{padding:100px 0 40px;}
-.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:end;margin-bottom:70px;}
-.contact-grid h2{font-size:clamp(30px,5vw,52px);line-height:1.05;}
-.contact-links{display:flex;flex-direction:column;gap:0;}
-.clink{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--line);font-family:var(--mono);font-size:13px;color:var(--text-mid);transition:color .2s;}
-.clink:last-child{border-bottom:1px solid var(--line);}
-.clink:hover{color:var(--amber);}
-.clink span:last-child{color:var(--text-lo);}
-.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11.5px;color:var(--text-lo);}
-@media(max-width:820px){.contact-grid{grid-template-columns:1fr;}}
-
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.in{opacity:1;transform:none;}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
-
-a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
-</style>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
+<meta name="theme-color" content="#101c22">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Abdulquawiyy Owolabi — Geospatial Data Scientist">
+<meta property="og:description" content="Remote sensing, spatial analysis, and machine learning for agriculture, climate, and environmental monitoring. GIS consultant based in Osogbo, Nigeria.">
+<meta property="og:image" content="https://abdulquawiyy-owolabi.github.io/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://abdulquawiyy-owolabi.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Abdulquawiyy Owolabi — Geospatial Data Scientist">
+<meta name="twitter:description" content="Remote sensing, spatial analysis, and machine learning for agriculture, climate, and environmental monitoring.">
+<meta name="twitter:image" content="https://abdulquawiyy-owolabi.github.io/assets/img/og-image.png">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
 <header>
   <div class="nav-inner">
-    <a href="#" class="logo">AO <span>/ 7.77&deg;N 4.56&deg;E</span></a>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    <a href="#" class="logo">AO</a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+        <span aria-hidden="true">☀︎</span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    </div>
     <nav><ul id="navList">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -259,7 +54,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   <div class="wrap hero-inner">
     <div class="coord">OSOGBO, NIGERIA — 07&deg;46'19"N 04&deg;33'36"E</div>
     <h1>Abdulquawiyy<br><em>Owolabi</em></h1>
-    <div class="role">Geospatial Data Scientist &amp; GIS Consultant</div>
+    <div class="role">Geospatial Data Science | Environmental Monitoring &amp; Geomatics</div>
     <p class="lede">I turn satellite imagery, radar, and field data into decisions — mapping land change, water risk, and crop conditions for clients across agriculture, energy, and environmental monitoring.</p>
     <div class="btn-row">
       <a href="#projects" class="btn btn-primary">View projects &rarr;</a>
@@ -281,9 +76,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
     <h2 class="section-title reveal">Reading the land through data</h2>
     <div class="about-grid">
       <div class="reveal">
-        <p>I'm a graduate of Surveying and Geoinformatics from Obafemi Awolowo University, working at the intersection of <strong>remote sensing, spatial analysis, and machine learning</strong>. My focus is on satellite image analysis of changing environments — climate, agriculture, and environmental monitoring in particular.</p>
-        <p>My goal is to make spatial data science useful for sustainability: turning Sentinel, Landsat, and SAR imagery into maps and models that inform real decisions, whether that's site selection for a solar farm, oil spill detection in the Niger Delta, or watershed planning along the River Osun.</p>
-        <p>Day to day, I split my time between <strong>freelance GIS consulting</strong> on Upwork and Fiverr, project delivery for clients across Africa, Europe, and Asia, and independent research — most recently a co-authored SAR-based oil spill detection study currently under review.</p>
+        <p>I'm a Surveying and Geoinformatics graduate from <strong>Obafemi Awolowo University</strong> with expertise in <strong>GIS, remote sensing, spatial analysis, and machine learning</strong>. I specialize in transforming satellite imagery into actionable insights for environmental monitoring, agriculture, climate resilience, and sustainable development.</p>
+        <p>My work combines data from <strong>Sentinel, Landsat, and SAR</strong> with geospatial analytics to solve real-world challenges, from solar farm site suitability and oil spill detection to land use analysis and watershed management.</p>
+        <p>Alongside delivering GIS solutions for clients worldwide through <strong>Upwork and Fiverr</strong>, I actively contribute to geospatial research and continuously explore innovative applications of Earth observation and spatial data science.</p>
+
       </div>
       <div class="reveal">
         <div class="profile-photo" style="margin-bottom:28px;">
@@ -293,6 +89,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
           <div class="spec-row"><span>Remote sensing</span><span>Sentinel-1/2, Landsat, SAR</span></div>
           <div class="spec-row"><span>Spatial analysis</span><span>QGIS, ArcGIS Pro, PostGIS</span></div>
           <div class="spec-row"><span>Modelling</span><span>Python, ML, GeoAI</span></div>
+          <div class="spec-row"><span>Web mapping</span><span>Leaflet, MapLibre, Mapbox</span></div>
           <div class="spec-row"><span>Focus areas</span><span>Agriculture, climate, energy</span></div>
         </div>
         <div class="detail-card">
@@ -318,8 +115,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       <div class="leg-item"><div class="leg-top"><b>Python (GeoPandas, Rasterio, GDAL)</b><span>80%</span></div><div class="scale"><i style="width:80%"></i></div></div>
       <div class="leg-item"><div class="leg-top"><b>Google Earth Engine</b><span>80%</span></div><div class="scale"><i style="width:80%"></i></div></div>
       <div class="leg-item"><div class="leg-top"><b>Machine learning</b><span>70%</span></div><div class="scale"><i style="width:70%"></i></div></div>
-      <div class="leg-item"><div class="leg-top"><b>PostGIS</b><span>70%</span></div><div class="scale"><i style="width:70%"></i></div></div>
-      <div class="leg-item"><div class="leg-top"><b>Web mapping (Leaflet, MapLibre, Mapbox)</b><span>65%</span></div><div class="scale"><i style="width:65%"></i></div></div>
+      <div class="leg-item"><div class="leg-top"><b>PostGIS &amp; DuckDB</b><span>70%</span></div><div class="scale"><i style="width:70%"></i></div></div>
+      <div class="leg-item"><div class="leg-top"><b>Web mapping (Leaflet, MapLibre, Mapbox)</b><span>75%</span></div><div class="scale"><i style="width:75%"></i></div></div>
     </div>
   </div>
 </section>
@@ -335,7 +132,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <div class="tl-mid"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-body">
           <span class="tl-tag">Osogbo, NG</span>
-          <h4>Graduate GIS Analyst</h4>
+          <h4>GIS Analyst</h4>
           <span class="org">Brigmick Global Services</span>
           <ul>
             <li>Prepare technical proposals scoping project purpose, needs, and requirements</li>
@@ -348,9 +145,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <div class="tl-date">Aug 2024 &mdash; Mar 2025</div>
         <div class="tl-mid"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-body">
-          <span class="tl-tag">Remote &middot; Niger Delta focus</span>
+          <span class="tl-tag">Remote &middot; Environmental Monitoring focus</span>
           <h4>Research Intern, Geospatial Data Science</h4>
-          <span class="org">GISorb</span>
+          <a class="org" href="https://gisorb.com" target="_blank" rel="noopener noreferrer">GISorb</a>
           <ul>
             <li>Processed and analysed Sentinel-1 SAR data for oil spill detection across the Niger Delta</li>
             <li>Used the GEE LandTrendr algorithm to assess 1999&ndash;2024 agricultural land-use change tied to spill events</li>
@@ -365,7 +162,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <div class="tl-body">
           <span class="tl-tag">Nationwide, NG</span>
           <h4>Remote Mapper &amp; Validator</h4>
-          <span class="org">Eco-Smart Cities</span>
+          <a class="org" href="https://www.hotosm.org/en/projects/mapping-for-environmental-good-eco-smart-cities-project/" target="_blank" rel="noopener noreferrer">Eco-Smart Cities</a>
           <ul>
             <li>Mapped buildings and features across Nigeria in JOSM as part of OpenStreetMap validation work</li>
             <li>Validated over 100,000 buildings, keeping accuracy within acceptable tolerances</li>
@@ -453,7 +250,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
           <h4>Single-Event Hydrological Modelling of the Anambra River</h4>
           <p>Rainfall-runoff simulation using HEC-HMS to analyse hydrological conditions for a June 2024 storm event.</p>
           <div class="proj-stats"><div><b>HEC&#8209;HMS</b>Model engine</div><div><b>5 days</b>Event window</div></div>
-          <a class="proj-link" href="https://github.com/abdulquawiyy-owolabi/Anambra-River-Watershed-Analysis" target="_blank" rel="noopener">View repository &rarr;</a>
+          <a class="proj-link" href="projects/anambra-river-watershed.html">Read case study &rarr;</a>
         </div>
       </div>
 
@@ -464,7 +261,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
           <h4>Land Suitability for Solar Farm Development</h4>
           <p>GIS-based multi-criteria evaluation with AHP, weighing solar radiation, land use, slope, and infrastructure proximity to map optimal sites.</p>
           <div class="proj-stats"><div><b>AHP</b>Method</div><div><b>3 tiers</b>Suitability classes</div></div>
-          <a class="proj-link" href="https://github.com/Huygens123/Solar-Farm-Suitability-Study/" target="_blank" rel="noopener">View repository &rarr;</a>
+          <a class="proj-link" href="projects/kano-solar-suitability.html">Read case study &rarr;</a>
         </div>
       </div>
 
@@ -475,7 +272,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
           <h4>Spatiotemporal LST Trend Analysis, 2013&ndash;2024</h4>
           <p>Time-series analysis of Landsat 8 thermal data revealing urban heat island patterns across land cover classes over an 11-year span.</p>
           <div class="proj-stats"><div><b>Landsat 8</b>Source</div><div><b>11 yrs</b>Time series</div></div>
-          <a class="proj-link" href="https://github.com/abdulquawiyy-owolabi/Kano-Municipal-Land-Surface-Temperature-LST-Trend-Analysis" target="_blank" rel="noopener">View repository &rarr;</a>
+          <a class="proj-link" href="projects/kano-lst-trend.html">Read case study &rarr;</a>
         </div>
       </div>
 
@@ -486,7 +283,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
           <h4>Satellite Image Classification with Random Forest &amp; SVM</h4>
           <p>Land cover mapping from Sentinel-2 imagery to support agricultural monitoring and urban planning decisions.</p>
           <div class="proj-stats"><div><b>82%</b>Overall accuracy</div><div><b>Sentinel-2</b>Source</div></div>
-          <a class="proj-link" href="https://github.com/abdulquawiyy-owolabi/Sentinel-2-Image-Classification-Using-Random-Forest-and-SVM" target="_blank" rel="noopener">View repository &rarr;</a>
+          <a class="proj-link" href="projects/iwo-sentinel2-classification.html">Read case study &rarr;</a>
         </div>
       </div>
 
@@ -530,24 +327,45 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 <footer id="contact">
   <div class="wrap">
     <div class="eyebrow">07 — Coordinates</div>
-    <div class="contact-grid" style="margin-top:20px;">
-      <h2 class="reveal">Have a project<br>in mind? Let's map it out.</h2>
-      <div class="contact-links reveal">
+    <div class="contact-grid" style="margin-top:20px;align-items:start;">
+      <div class="reveal">
+        <h2 style="margin-bottom:26px;">Have a project<br>in mind? Let's map it out.</h2>
+        <form class="form-wrap" id="contactForm">
+          <input type="hidden" name="access_key" value="c488ce74-64c5-45a2-bc8c-87bd067f5041">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+          </div>
+          <div class="form-row">
+            <textarea name="message" placeholder="Tell me about your project" required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="formSubmitBtn">Send message</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+      <div class="reveal">
+        <div class="or-divider" style="margin-top:0;">Or reach me directly</div>
+        <div class="contact-links">
         <a class="clink" href="mailto:ohhuygens@outlook.com"><span>Email</span><span>ohhuygens@outlook.com</span></a>
-        <a class="clink" href="https://www.linkedin.com/in/abdulquawiyyo/" target="_blank" rel="noopener"><span>LinkedIn</span><span>/in/abdulquawiyyo</span></a>
+        <a class="clink" href="https://www.linkedin.com/in/abdulquawiyy-owo" target="_blank" rel="noopener"><span>LinkedIn</span><span>/in/abdulquawiyy-owo</span></a>
         <a class="clink" href="https://github.com/abdulquawiyy-owolabi" target="_blank" rel="noopener"><span>GitHub</span><span>@abdulquawiyy-owolabi</span></a>
         <a class="clink" href="https://www.upwork.com/freelancers/~01652eb0b120e93637?mp_source=share" target="_blank" rel="noopener"><span>Upwork</span><span>Hire on Upwork</span></a>
+        <a class="clink" href="https://www.fiverr.com/s/0b7q75r" target="_blank" rel="noopener"><span>Fiverr</span><span>Hire on Fiverr</span></a>
         <a class="clink" href="https://x.com/huygradi" target="_blank" rel="noopener"><span>X</span><span>@huygradi</span></a>
+      </div>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; 2026 Abdulquawiyy Owolabi. All rights reserved.</span>
+      <span>&copy; <span id="currentYear"></span> Abdulquawiyy Owolabi. All rights reserved.</span>
       <span>Osogbo, Osun State, Nigeria</span>
     </div>
   </div>
 </footer>
 
 <script>
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
 document.getElementById('menuBtn').addEventListener('click',function(){
   document.getElementById('navList').classList.toggle('open');
 });
@@ -558,6 +376,75 @@ var io=new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 },{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+var contactForm=document.getElementById('contactForm');
+if(contactForm){
+  contactForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=document.getElementById('formSubmitBtn');
+    var status=document.getElementById('formStatus');
+    var formData=new FormData(contactForm);
+    var key=formData.get('access_key');
+    if(!key || key==='YOUR_WEB3FORMS_ACCESS_KEY'){
+      status.className='form-status err';
+      status.textContent='Form is not yet configured — email me directly for now.';
+      return;
+    }
+    btn.disabled=true;
+    btn.textContent='Sending...';
+    status.className='form-status';
+    status.textContent='';
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Accept':'application/json'},
+      body:formData
+    }).then(function(r){return r.json();}).then(function(data){
+      btn.disabled=false;
+      btn.textContent='Send message';
+      if(data.success){
+        status.className='form-status ok';
+        status.textContent="Message sent — I'll reply within a day or two.";
+        contactForm.reset();
+      }else{
+        status.className='form-status err';
+        status.textContent='Something went wrong — email me directly instead.';
+      }
+    }).catch(function(){
+      btn.disabled=false;
+      btn.textContent='Send message';
+      status.className='form-status err';
+      status.textContent='Could not send — email me directly instead.';
+    });
+  });
+}
+</script>
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === 'dark' ? '#101c22' : '#f1ede1');
+    }
+
+    if (themeToggle) {
+      const isLight = theme === 'light';
+      themeToggle.setAttribute('aria-pressed', String(isLight));
+      themeToggle.innerHTML = `<span aria-hidden="true">${isLight ? '☾' : '☀︎'}</span><span class="theme-toggle-text">${isLight ? 'Dark' : 'Light'}</span>`;
+    }
+  }
+
+  const storedTheme = localStorage.getItem('theme');
+  const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  applyTheme(initialTheme);
+
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(nextTheme);
+  });
 </script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spatiotemporal LST Trend Analysis, Kano Municipal (2013–2024) — Abdulquawiyy Owolabi</title>
+<meta name="description" content="Statistical analysis of Land Surface Temperature trends across six land cover types in Kano Municipal, Nigeria, using Landsat 8 imagery and Mann-Kendall, quantile regression, and seasonal decomposition methods.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="theme-color" content="#101c22">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spatiotemporal LST Trend Analysis, Kano Municipal (2013–2024)">
+<meta property="og:description" content="Landsat 8 time-series analysis of urban heat island patterns across Kano Municipal, Nigeria.">
+<meta property="og:image" content="https://abdulquawiyy-owolabi.github.io/assets/img/og-image.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">AO</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    <nav><ul id="navList">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#writing">Writing</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<section class="cs-hero">
+  <div class="grid-lines"></div>
+  <div class="wrap">
+    <a href="../index.html#projects" class="cs-back">&larr; Back to projects</a>
+    <div class="coord" style="margin-bottom:18px;">12&deg;00'N 08&deg;35'E &mdash; KANO MUNICIPAL, NG</div>
+    <h1>Spatiotemporal land surface temperature trend analysis, 2013&ndash;2024</h1>
+    <div class="role">Landsat 8 time series &middot; statistical trend testing</div>
+    <div class="cs-meta-row">
+      <div>Time span<span>11 years</span></div>
+      <div>Land cover classes<span>6</span></div>
+      <div>Methods<span>Mann-Kendall, QR, PCA</span></div>
+      <div>Platform<span>Google Earth Engine</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-body">
+  <div class="wrap" style="max-width:820px;padding:0;">
+
+    <h2>Overview</h2>
+    <p>Urban heat island effects are usually easy to see and hard to prove statistically. This project tests whether land surface temperature in Kano Municipal actually trended upward between 2013 and 2024, and whether that trend differs by land cover type &mdash; built-up areas, cropland, bareland, shrubland, grassland, and forest &mdash; using five separate statistical approaches rather than relying on visual inspection alone.</p>
+
+    <h2>Data &amp; method</h2>
+    <ul>
+      <li><strong>Imagery:</strong> Landsat 8 TOA reflectance, 2013&ndash;2024, processed in Google Earth Engine</li>
+      <li><strong>Land cover:</strong> <a class="inline-link" href="https://esa-worldcover.org" target="_blank" rel="noopener">ESA WorldCover 10m</a>, used to place points of interest per land cover class</li>
+      <li><strong>Boundary:</strong> FAO GAUL administrative boundaries</li>
+      <li><strong>Analysis:</strong> LST calculated per point of interest, then tested with the Mann-Kendall trend test, quantile regression across five percentiles, seasonal decomposition, extreme value analysis, and PCA for spatial pattern structure</li>
+    </ul>
+
+    <div class="fig">
+      <img src="https://github.com/user-attachments/assets/27552604-e149-454d-bac5-5b23b37b3bf1" alt="Land surface temperature distribution by land use type" loading="lazy">
+      <figcaption>LST distribution by land cover type, 2013&ndash;2024</figcaption>
+    </div>
+
+    <h2>Results</h2>
+    <h3>The regional signal was flat &mdash; until the data was split by season</h3>
+    <p>A basic Mann-Kendall test across the full year found <strong>no statistically significant trend</strong> for any land cover type (all p-values above 0.05). But a seasonal Kendall test told a different story: cropland, bareland, and forest all showed statistically significant <strong>increasing</strong> LST trends once seasonal noise was accounted for &mdash; bareland most sharply (p = 0.0002, Sen's slope 0.30&deg;C/year).</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <tr><th>Land cover</th><th>Seasonal trend</th><th>p-value</th><th>Sen's slope (&deg;C/yr)</th></tr>
+        <tr><td>Bareland</td><td>Increasing</td><td>0.0002</td><td>0.297</td></tr>
+        <tr><td>Forest</td><td>Increasing</td><td>0.004</td><td>0.284</td></tr>
+        <tr><td>Crop</td><td>Increasing</td><td>0.009</td><td>0.211</td></tr>
+        <tr><td>Built-up</td><td>No trend (borderline)</td><td>0.068</td><td>0.113</td></tr>
+        <tr><td>Grassland</td><td>No trend (borderline)</td><td>0.083</td><td>0.234</td></tr>
+        <tr><td>Shrub</td><td>No trend</td><td>0.385</td><td>0.081</td></tr>
+      </table>
+    </div>
+
+    <div class="fig">
+      <img src="https://github.com/user-attachments/assets/3eebefb5-60ed-4a98-a0f6-d2b536d4f380" alt="Mann-Kendall trend analysis results chart" loading="lazy">
+      <figcaption>Mann-Kendall &amp; seasonal Kendall trend results across land cover types</figcaption>
+    </div>
+
+    <h3>Extreme temperature thresholds</h3>
+    <p>Grassland recorded the highest 95th-percentile threshold at 41.43&deg;C, while forest stayed coolest at 35.76&deg;C. Extreme high-temperature events clustered consistently between 2019 and 2020 across nearly every land cover class, while extreme lows clustered in late 2015 and 2022&ndash;2023 &mdash; a pattern consistent enough across unrelated land covers to point to a regional climate driver rather than land-cover-specific effects alone.</p>
+
+    <div class="fig-grid">
+      <div class="fig">
+        <img src="https://github.com/user-attachments/assets/628b3530-70fa-4caf-b366-35647839bb5b" alt="Quantile regression analysis for cropland" loading="lazy">
+        <figcaption>Quantile regression, cropland</figcaption>
+      </div>
+      <div class="fig">
+        <img src="https://github.com/user-attachments/assets/1a54d610-d65f-4a2c-9d8e-b4816f4ab252" alt="Quantile regression analysis for bareland" loading="lazy">
+        <figcaption>Quantile regression, bareland</figcaption>
+      </div>
+    </div>
+
+    <h3>Spatial patterns</h3>
+    <p>Forest and cropland ran hottest on average (~31.5&deg;C) and most variable, while grassland stayed coolest (~29.5&deg;C). All land cover types correlated strongly with each other (0.86&ndash;0.98), and a two-component PCA explained roughly 99% of the variance &mdash; meaning temperature across this landscape behaves as one tightly coupled system rather than several independent microclimates.</p>
+
+    <div class="fig">
+      <img src="https://github.com/user-attachments/assets/2bb67243-16a7-4172-827b-07207a9f19ac" alt="First two principal components of spatial temperature pattern analysis" loading="lazy">
+      <figcaption>First two principal components, spatial pattern analysis</figcaption>
+    </div>
+
+    <h2>Why it matters</h2>
+    <p>The headline finding isn't "Kano is warming" &mdash; the full-year test doesn't support that claim. It's that <strong>the trend only appears once you control for seasonality</strong>, and even then it concentrates in bareland, forest, and cropland rather than the built environment. That's a more actionable, more defensible result for urban planning and agricultural risk assessment than a blanket warming narrative would be, and it's the kind of nuance that naive before/after imagery comparisons miss entirely.</p>
+
+    <a href="https://github.com/abdulquawiyy-owolabi/Kano-Municipal-Land-Surface-Temperature-LST-Trend-Analysis" target="_blank" rel="noopener" class="inline-link" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;margin-top:10px;">View full repository, notebooks &amp; data on GitHub &rarr;</a>
+
+    <div class="cs-nav">
+      <a href="kano-solar-suitability.html">&larr; Kano solar suitability</a>
+      <a href="iwo-sentinel2-classification.html">Iwo Sentinel-2 classification &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer style="padding:50px 0;">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>&copy; 2026 Abdulquawiyy Owolabi. All rights reserved.</span>
+      <a href="../index.html#contact" style="color:var(--text-lo);">Get in touch &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('menuBtn').addEventListener('click',function(){
+  document.getElementById('navList').classList.toggle('open');
+});
+</script>
+</body>
+</html>

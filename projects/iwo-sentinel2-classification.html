@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentinel-2 Land Cover Classification, Iwo LGA — Abdulquawiyy Owolabi</title>
+<meta name="description" content="Random Forest and SVM land cover classification of Iwo Local Government, Osun State, Nigeria, using Sentinel-2 imagery and spectral indices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="theme-color" content="#101c22">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sentinel-2 Land Cover Classification, Iwo LGA">
+<meta property="og:description" content="Random Forest and SVM land cover classification using Sentinel-2 imagery, Osun State, Nigeria.">
+<meta property="og:image" content="https://abdulquawiyy-owolabi.github.io/assets/img/og-image.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">AO</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    <nav><ul id="navList">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#writing">Writing</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<section class="cs-hero">
+  <div class="grid-lines"></div>
+  <div class="wrap">
+    <a href="../index.html#projects" class="cs-back">&larr; Back to projects</a>
+    <div class="coord" style="margin-bottom:18px;">07&deg;38'N 04&deg;11'E &mdash; IWO LGA, OSUN STATE, NG</div>
+    <h1>Satellite image classification using Random Forest and SVM</h1>
+    <div class="role">Land cover mapping &middot; Sentinel-2 imagery</div>
+    <div class="cs-meta-row">
+      <div>Classes<span>6 land cover types</span></div>
+      <div>Models<span>Random Forest, SVM</span></div>
+      <div>Accuracy<span>82% (both models)</span></div>
+      <div>Bands used<span>B2, B3, B4, B8, B11, B12</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-body">
+  <div class="wrap" style="max-width:820px;padding:0;">
+
+    <h2>Overview</h2>
+    <p>This project classifies land cover across Iwo Local Government, Osun State, from Sentinel-2 multispectral imagery &mdash; water bodies, trees, crops, built-up areas, bareland, and rangeland &mdash; to support agricultural monitoring and urban planning decisions. Beyond running the classifiers, the focus was on understanding <em>which</em> spectral bands actually separate these classes and why.</p>
+
+    <h2>Method</h2>
+    <h3>Preprocessing &amp; exploratory analysis</h3>
+    <p>Sentinel-2 bands were loaded and clipped to the study area with <code>rasterio</code>, then used to calculate NDVI and NDMI. True-colour and false-colour composites were built to visually separate the urban core from surrounding vegetation before any modelling started.</p>
+
+    <div class="fig">
+      <img src="https://raw.githubusercontent.com/abdulquawiyy-owolabi/Sentinel-2-Image-Classification-Using-Random-Forest-and-SVM/main/images/raster_band.png" alt="Sentinel-2 band composite visualizations of Iwo LGA" loading="lazy">
+      <figcaption>Natural colour, false colour, urban, agriculture, vegetation, and land/water composites</figcaption>
+    </div>
+
+    <h3>Which bands actually separate the classes</h3>
+    <p>Band-by-band histogram analysis showed each Sentinel-2 band carries different discriminating power. B8 (near-infrared) produced the most dramatic separation between classes, reaching pixel values up to 4,500 units and clearly distinguishing vegetation from built and bare surfaces. B4 (red) showed strong separation up to 3,500 units, while B2 (blue) was most sensitive specifically to tree cover. Water bodies consistently registered lower readings than vegetation across nearly every band, though the size of that gap shifted band to band &mdash; the core reason multispectral analysis outperforms any single band.</p>
+
+    <h2>Models &amp; results</h2>
+    <p>Random Forest and SVM classifiers were both evaluated on accuracy, precision, recall, and F1-score, with confusion matrices to trace exactly where misclassification happened.</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <tr><th>Class</th><th>Samples</th><th>Random Forest F1</th><th>SVM F1</th></tr>
+        <tr><td>Trees</td><td>272</td><td>0.88</td><td>0.89</td></tr>
+        <tr><td>Built-up areas</td><td>&mdash;</td><td>0.78</td><td>0.75</td></tr>
+        <tr><td>Rangeland</td><td>&mdash;</td><td>0.75</td><td>0.74</td></tr>
+        <tr><td>Water bodies</td><td>2</td><td>0.00</td><td>0.67</td></tr>
+        <tr><td>Crops</td><td>7</td><td>0.22</td><td>0.00</td></tr>
+      </table>
+    </div>
+
+    <p>Both models landed at <strong>82% overall accuracy</strong>, but the class-level breakdown tells the real story: performance tracked sample size almost exactly. Trees, with 272 training samples, classified well under both models. Water bodies and crops, with just 2 and 7 samples respectively, were essentially unlearnable &mdash; SVM at least achieved perfect precision on water despite the scarcity, while Random Forest failed to identify it at all. This is a textbook class-imbalance problem rather than a modelling failure, and the fix is more balanced ground-truth sampling, not a different algorithm.</p>
+
+    <div class="fig-grid">
+      <div class="fig">
+        <img src="https://raw.githubusercontent.com/abdulquawiyy-owolabi/Sentinel-2-Image-Classification-Using-Random-Forest-and-SVM/main/results/rf_classiication.png" alt="Random Forest land cover classification map" loading="lazy">
+        <figcaption>Random Forest classification output</figcaption>
+      </div>
+      <div class="fig">
+        <img src="https://raw.githubusercontent.com/abdulquawiyy-owolabi/Sentinel-2-Image-Classification-Using-Random-Forest-and-SVM/main/results/svm_classiication.png" alt="Support Vector Machine land cover classification map" loading="lazy">
+        <figcaption>SVM classification output</figcaption>
+      </div>
+    </div>
+
+    <h2>Why it matters</h2>
+    <p>82% accuracy with a diagnosed, explainable failure mode is more useful to a client than a higher accuracy number with no explanation of where it breaks. Anyone building on this classification &mdash; for crop monitoring or urban growth tracking &mdash; knows exactly which classes to trust and which need better ground-truth data before the outputs are used for decisions.</p>
+
+    <a href="https://github.com/abdulquawiyy-owolabi/Sentinel-2-Image-Classification-Using-Random-Forest-and-SVM" target="_blank" rel="noopener" class="inline-link" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;margin-top:10px;">View full repository &amp; notebooks on GitHub &rarr;</a>
+
+    <div class="cs-nav">
+      <a href="kano-lst-trend.html">&larr; Kano LST trend analysis</a>
+      <a href="../index.html#projects">All projects &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer style="padding:50px 0;">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>&copy; 2026 Abdulquawiyy Owolabi. All rights reserved.</span>
+      <a href="../index.html#contact" style="color:var(--text-lo);">Get in touch &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('menuBtn').addEventListener('click',function(){
+  document.getElementById('navList').classList.toggle('open');
+});
+</script>
+</body>
+</html>
