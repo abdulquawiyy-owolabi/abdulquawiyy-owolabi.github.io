@@ -21,7 +21,13 @@
 <header>
   <div class="nav-inner">
     <a href="../index.html" class="logo">AO</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+        <span aria-hidden="true">☀︎</span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    </div>
     <nav><ul id="navList">
       <li><a href="../index.html#about">About</a></li>
       <li><a href="../index.html#projects">Projects</a></li>
@@ -129,6 +135,38 @@
 document.getElementById('menuBtn').addEventListener('click',function(){
   document.getElementById('navList').classList.toggle('open');
 });
+document.querySelectorAll('#navList a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navList').classList.remove('open');});
+});
+</script>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === 'dark' ? '#101c22' : '#f1ede1');
+    }
+
+    if (themeToggle) {
+      const isLight = theme === 'light';
+      themeToggle.setAttribute('aria-pressed', String(isLight));
+      themeToggle.innerHTML = `<span aria-hidden="true">${isLight ? '☾' : '☀︎'}</span><span class="theme-toggle-text">${isLight ? 'Dark' : 'Light'}</span>`;
+    }
+  }
+
+  const storedTheme = localStorage.getItem('theme');
+  const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  applyTheme(initialTheme);
+
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(nextTheme);
+  });
 </script>
 </body>
 </html>

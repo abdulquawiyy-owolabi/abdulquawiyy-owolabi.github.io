@@ -21,7 +21,13 @@
 <header>
   <div class="nav-inner">
     <a href="../index.html" class="logo">AO</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+        <span aria-hidden="true">☀︎</span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    </div>
     <nav><ul id="navList">
       <li><a href="../index.html#about">About</a></li>
       <li><a href="../index.html#projects">Projects</a></li>
