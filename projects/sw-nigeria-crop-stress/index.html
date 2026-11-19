@@ -111,10 +111,10 @@ const m0=/t=(\d+)/.exec(location.hash||"");step=m0?Math.min(NS-1,+m0[1]):peakSte
 
 // ---- map
 const map=L.map("map",{preferCanvas:true});
-const carto=L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,attribution:"&copy; OpenStreetMap contributors &copy; CARTO"});
 const esri=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:18,attribution:"Tiles &copy; Esri"});
-carto.addTo(map);
-L.control.layers({"Light map":carto,"Satellite":esri},null,{position:"bottomright"}).addTo(map);
+const street=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,attribution:"Sources: Esri, HERE, Garmin, USGS, Intermap, INCREMENT P, NRCan, Esri Japan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors, and the GIS User Community"});
+esri.addTo(map);
+L.control.layers({"Satellite":esri,"Street map":street},null,{position:"bottomright"}).addTo(map);
 const rend=L.canvas({padding:0.5});
 function rad(){return Math.max(3.5,(map.getZoom()-6.2)*2.3);}
 const LAYER_NAME={pred:"Predicted risk",obs:"Observed stress (proxy)",unc:"Model disagreement"};
