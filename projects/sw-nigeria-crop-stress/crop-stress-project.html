@@ -20,6 +20,8 @@
 <meta name="twitter:description" content="A proxy-validated system that detects crop stress in Oyo, Osun and northern Ogun from satellite and climate data, with an honest account of how far ahead it can see.">
 <meta name="twitter:image" content="https://abdulquawiyy-owolabi.github.io/assets/img/og-image.png">
 <style>
+
+  
 :root{
   --paper:#f4f7f5; --ink:#15262a; --muted:#566a6b; --rule:#d3ddd9;
   --canopy:#3a7d57; --radar:#2a6f93; --ochre:#b7791f; --grey:#7c8b88; --link:#1f5f7a; --surface:#ffffff;
@@ -27,16 +29,27 @@
 @media (prefers-color-scheme:dark){
   :root{--paper:#0f1b1d; --ink:#e4edea; --muted:#9db0ad; --rule:#273a3c; --canopy:#5fb583; --radar:#6bb4d6; --ochre:#e0a53d; --grey:#8fa09c; --link:#8cc9e3; --surface:#142427;}
 }
+:root[data-theme="light"]{--paper:#f4f7f5;--ink:#15262a;--muted:#566a6b;--rule:#d3ddd9;--canopy:#3a7d57;--radar:#2a6f93;--ochre:#b7791f;--grey:#7c8b88;--link:#1f5f7a;--surface:#fff}
+:root[data-theme="dark"]{--paper:#0f1b1d;--ink:#e4edea;--muted:#9db0ad;--rule:#273a3c;--canopy:#5fb583;--radar:#6bb4d6;--ochre:#e0a53d;--grey:#8fa09c;--link:#8cc9e3;--surface:#142427}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 .serif,h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
 a{color:var(--link);text-underline-offset:3px}
 a:focus-visible,button:focus-visible,iframe:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.top{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);font-size:15px}
-.top a{color:var(--ink);text-decoration:none;font-weight:600}
-.top span{color:var(--muted)}
+.wrap{max-width:1080px;margin:0 auto;padding:68px 24px 0}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(16,28,34,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2b4249}
+.site-nav .nav-inner{max-width:1180px;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.site-nav .logo{font:13px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.04em;color:#f4f1e6;text-decoration:none}
+.site-nav .nav-actions{display:flex;align-items:center;gap:10px}
+.site-nav .theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #2b4249;border-radius:999px;background:transparent;color:#f4f1e6;font:11.5px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.site-nav .theme-toggle:hover{border-color:#d1a256;color:#d1a256;background:rgba(209,162,86,.08)}
+.site-nav nav ul{list-style:none;display:flex;align-items:center;gap:34px;margin:0;padding:0}
+.site-nav nav a{position:relative;color:#b9c2be;font:12.5px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.site-nav nav a:hover{color:#f4f1e6}
+.site-nav .nav-cta{border:1px solid #4f6b52;color:#89ab84;padding:8px 16px;border-radius:2px}
+.site-nav .nav-cta:hover{background:#89ab84;color:#101c22;border-color:#89ab84}
+.site-nav .menu-btn{display:none;background:none;border:none;color:#f4f1e6;font-size:22px;cursor:pointer}
 .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:56px;padding:56px 0 48px;align-items:center}
 h1{font-size:clamp(2.1rem,4.6vw,3.25rem);line-height:1.08;letter-spacing:-.015em;font-weight:600;margin:0 0 20px;text-wrap:balance}
 .lede{font-size:1.15rem;line-height:1.55;color:var(--muted);margin:0 0 28px;max-width:34em}
@@ -85,14 +98,37 @@ footer p{margin:0 0 .5em}
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;gap:32px;padding-top:36px}
   .cols{grid-template-columns:1fr;gap:16px}
+  .site-nav .nav-inner{padding:0 24px}
+  .site-nav nav ul{position:fixed;top:68px;left:0;right:0;flex-direction:column;align-items:flex-start;background:#16262d;padding:20px 24px 30px;gap:18px;border-bottom:1px solid #2b4249;transform:translateY(-130%);transition:transform .3s ease}
+  .site-nav nav ul.open{transform:translateY(0)}
+  .site-nav .menu-btn{display:block}
 }
 </style>
 </head>
 <body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="../../index.html" class="logo" aria-label="Abdulquawiyy Owolabi home">AO</a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+        <span aria-hidden="true">☀︎</span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Toggle menu" aria-controls="navList" aria-expanded="false">&#9776;</button>
+    </div>
+    <nav><ul id="navList">
+      <li><a href="../../index.html#about">About</a></li>
+      <li><a href="../../index.html#skills">Skills</a></li>
+      <li><a href="../../index.html#experience">Experience</a></li>
+      <li><a href="../../index.html#internship">Internship</a></li>
+      <li><a href="../../index.html#projects">Projects</a></li>
+      <li><a href="../../index.html#writing">Writing</a></li>
+      <li><a href="../../index.html#contact" class="nav-cta">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
 <div class="wrap">
-  <div class="top"><a href="https://abdulquawiyy-owolabi.github.io/">Abdulquawiyy</a><span>Freelance GIS and remote sensing</span></div>
-
-  <header class="hero">
+  <section class="hero">
     <div>
       <h1>Satellites can detect crop stress as it happens. They can’t yet see it coming.</h1>
       <p class="lede">A detection system for Oyo, Osun and northern Ogun in Nigeria, built with Earth Engine, Python and Sentinel-1 radar. There are no ground labels, so the claims stay modest and the tests are strict.</p>
@@ -152,7 +188,7 @@ footer p{margin:0 0 .5em}
 </svg>
       <figcaption>Skill over chance (PR-AUC lift, fold means, tested on 2016 to 2025) by how far ahead the model predicts. The best model beats persistence at 0 days by +0.24 lift by year-level bootstrap (95% CI +0.14 to +0.37), better in 9 of 10 test years.</figcaption>
     </figure>
-  </header>
+  </section>
 
   <main>
     <section class="cols">
@@ -267,12 +303,44 @@ footer p{margin:0 0 .5em}
   </footer>
 </div>
 <script>
+  const themeToggle = document.getElementById('themeToggle');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const root = document.documentElement;
+  const favicon = document.getElementById('siteFavicon');
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === 'dark' ? '#101c22' : '#f1ede1');
+    }
+    if (favicon) {
+      favicon.setAttribute('href', theme === 'light' ? '../../assets/favicon-light.svg' : '../../assets/favicon.svg');
+    }
+    const isLight = theme === 'light';
+    themeToggle.setAttribute('aria-pressed', String(isLight));
+    themeToggle.innerHTML = `<span aria-hidden="true">${isLight ? '☾' : '☀︎'}</span><span class="theme-toggle-text">${isLight ? 'Dark' : 'Light'}</span>`;
+  }
+
   const storedTheme = localStorage.getItem('theme');
   const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-  const favicon = document.getElementById('siteFavicon');
-  if (favicon) {
-    favicon.setAttribute('href', initialTheme === 'light' ? '../../assets/favicon-light.svg' : '../../assets/favicon.svg');
-  }
+  applyTheme(initialTheme);
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navList.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
 </body>
 </html>
