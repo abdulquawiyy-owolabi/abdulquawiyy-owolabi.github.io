@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Satellite crop-stress detection, SW Nigeria</title>
+<meta name="description" content="A proxy-validated system that detects crop stress in Oyo, Osun and northern Ogun from satellite and climate data, with an honest account of how far ahead it can see.">
+<style>
+:root{
+  --paper:#f4f7f5; --ink:#15262a; --muted:#566a6b; --rule:#d3ddd9;
+  --canopy:#3a7d57; --radar:#2a6f93; --ochre:#b7791f; --grey:#7c8b88; --link:#1f5f7a; --surface:#ffffff;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0f1b1d; --ink:#e4edea; --muted:#9db0ad; --rule:#273a3c; --canopy:#5fb583; --radar:#6bb4d6; --ochre:#e0a53d; --grey:#8fa09c; --link:#8cc9e3; --surface:#142427;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.serif,h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,iframe:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.top a{color:var(--ink);text-decoration:none;font-weight:600}
+.top span{color:var(--muted)}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:56px;padding:56px 0 48px;align-items:center}
+h1{font-size:clamp(2.1rem,4.6vw,3.25rem);line-height:1.08;letter-spacing:-.015em;font-weight:600;margin:0 0 20px;text-wrap:balance}
+.lede{font-size:1.15rem;line-height:1.55;color:var(--muted);margin:0 0 28px;max-width:34em}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:11px 18px;border-radius:6px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{background:var(--ochre);border-color:var(--ochre);color:#fff}
+figure{margin:0}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px;max-width:46em}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .grid{stroke:var(--rule);stroke-width:1}
+.chart .base{stroke:var(--grey);stroke-width:1.2;stroke-dasharray:2 4}
+.chart text{font:12px system-ui,sans-serif;fill:var(--muted)}
+.chart .lab{fill:var(--ink)}
+.chart .ann{fill:var(--ink);font-style:italic;font-size:12.5px}
+.chart .ln{fill:none;stroke-width:2.2;stroke-linejoin:round}
+.chart .dot{stroke:var(--paper);stroke-width:1.5}
+.chart .pers{stroke:var(--grey);stroke-dasharray:6 4}.chart .dot.pers{fill:var(--grey)}
+.chart .ndvi{stroke:var(--canopy)}.chart .dot.ndvi{fill:var(--canopy)}
+.chart .cn{stroke:var(--radar)}.chart .dot.cn{fill:var(--radar)}
+.chart .cns1{stroke:var(--ochre);stroke-width:3.4}.chart .dot.cns1{fill:var(--ochre)}
+main section{padding:44px 0;border-top:1px solid var(--rule)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:48px}
+h2{font-size:1.65rem;line-height:1.2;font-weight:600;margin:0;letter-spacing:-.005em}
+.text{max-width:66ch}
+.text p{margin:0 0 1em}
+.text ul{padding-left:1.2em;margin:0 0 1em}
+.text li{margin:.35em 0}
+ol.steps{list-style:none;padding:0;margin:0 0 1em;counter-reset:s}
+ol.steps li{counter-increment:s;padding-left:2.4em;position:relative;margin:0 0 1em}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:.05em;width:1.7em;height:1.7em;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:.85em;font-weight:600}
+ol.steps b{display:block}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0 6px}
+caption{text-align:left;font-weight:600;padding-bottom:8px}
+th,td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:14px}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.yes{font-weight:700}
+.small{font-size:14px;color:var(--muted)}
+.map{width:100%;height:min(70vh,600px);min-height:420px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);display:block}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 40px;margin:0}
+.facts dt{font-weight:600}
+.facts dd{margin:0 0 10px;color:var(--muted);font-size:15px}
+footer{border-top:1px solid var(--rule);padding:36px 0 56px;color:var(--muted);font-size:15px}
+footer p{margin:0 0 .5em}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:32px;padding-top:36px}
+  .cols{grid-template-columns:1fr;gap:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="https://abdulquawiyy-owolabi.github.io/">Abdulquawiyy</a><span>Freelance GIS and remote sensing</span></div>
+
+  <header class="hero">
+    <div>
+      <h1>Satellites can detect crop stress as it happens. They can’t yet see it coming.</h1>
+      <p class="lede">A proxy-validated detection system for Oyo, Osun and northern Ogun in Nigeria, built with Earth Engine, Python and Sentinel-1 radar. There are no ground labels, so the claims stay modest and the tests are strict.</p>
+      <div class="btns">
+        <a class="btn primary" href="https://huygens123.github.io/sw-nigeria-crop-stress/">Open the live map</a>
+        <a class="btn" href="https://github.com/Huygens123/sw-nigeria-crop-stress">View the code</a>
+        <a class="btn" href="https://github.com/Huygens123/sw-nigeria-crop-stress/blob/main/docs/research_report.pdf">Read the report</a>
+      </div>
+    </div>
+    <figure>
+      <svg viewBox="0 0 600 400" role="img" aria-labelledby="ct cd" class="chart">
+<title id="ct">Skill over chance by lead time</title>
+<desc id="cd">PR-AUC lift for four approaches at 0, 16, 32 and 48 days. All start between 1.8 and 2.2 at 0 days and converge to about 1.2 by 48 days. Climate plus radar plus NDVI is best at 0 days (2.20) and 16 days (1.58), and no better than persistence from 32 days.</desc>
+<line class="base" x1="46" x2="584" y1="352.0" y2="352.0"/>
+<text class="tick" x="38" y="356.0" text-anchor="end">1.0</text>
+<line class="grid" x1="46" x2="584" y1="234.1" y2="234.1"/>
+<text class="tick" x="38" y="238.1" text-anchor="end">1.5</text>
+<line class="grid" x1="46" x2="584" y1="116.3" y2="116.3"/>
+<text class="tick" x="38" y="120.3" text-anchor="end">2.0</text>
+<text class="note" x="50" y="346.0">1.0 means no better than chance</text>
+<text class="tick" x="46.0" y="372" text-anchor="middle">0</text>
+<text class="tick" x="225.3" y="372" text-anchor="middle">16</text>
+<text class="tick" x="404.7" y="372" text-anchor="middle">32</text>
+<text class="tick" x="584.0" y="372" text-anchor="middle">48</text>
+<text class="tick" x="315.0" y="392" text-anchor="middle">Lead time (days)</text>
+<text class="tick" transform="translate(12 187.0) rotate(-90)" text-anchor="middle">Skill (PR-AUC lift)</text>
+<polyline class="ln pers" points="46.0,158.7 225.3,243.6 404.7,278.9 584.0,311.9"/>
+<circle class="dot pers" cx="46.0" cy="158.7" r="3"/>
+<circle class="dot pers" cx="225.3" cy="243.6" r="3"/>
+<circle class="dot pers" cx="404.7" cy="278.9" r="3"/>
+<circle class="dot pers" cx="584.0" cy="311.9" r="3"/>
+<polyline class="ln ndvi" points="46.0,137.5 225.3,241.2 404.7,278.9 584.0,311.9"/>
+<circle class="dot ndvi" cx="46.0" cy="137.5" r="3"/>
+<circle class="dot ndvi" cx="225.3" cy="241.2" r="3"/>
+<circle class="dot ndvi" cx="404.7" cy="278.9" r="3"/>
+<circle class="dot ndvi" cx="584.0" cy="311.9" r="3"/>
+<polyline class="ln cn" points="46.0,90.4 225.3,227.1 404.7,283.6 584.0,304.9"/>
+<circle class="dot cn" cx="46.0" cy="90.4" r="3"/>
+<circle class="dot cn" cx="225.3" cy="227.1" r="3"/>
+<circle class="dot cn" cx="404.7" cy="283.6" r="3"/>
+<circle class="dot cn" cx="584.0" cy="304.9" r="3"/>
+<polyline class="ln cns1" points="46.0,69.1 225.3,215.3 404.7,290.7 584.0,309.6"/>
+<circle class="dot cns1" cx="46.0" cy="69.1" r="4"/>
+<circle class="dot cns1" cx="225.3" cy="215.3" r="4"/>
+<circle class="dot cns1" cx="404.7" cy="290.7" r="4"/>
+<circle class="dot cns1" cx="584.0" cy="309.6" r="4"/>
+<line class="ln cns1" x1="292.6" x2="314.6" y1="38.5" y2="38.5"/>
+<text class="lab" x="322.6" y="42.5">Climate + NDVI + Sentinel-1 radar</text>
+<line class="ln cn" x1="292.6" x2="314.6" y1="57.5" y2="57.5"/>
+<text class="lab" x="322.6" y="61.5">Climate + NDVI</text>
+<line class="ln ndvi" x1="292.6" x2="314.6" y1="76.5" y2="76.5"/>
+<text class="lab" x="322.6" y="80.5">NDVI history only</text>
+<line class="ln pers" x1="292.6" x2="314.6" y1="95.5" y2="95.5"/>
+<text class="lab" x="322.6" y="99.5">Persistence (last known state)</text>
+<text class="ann" x="281.4" y="158.7">From 16 days the gap is within noise</text>
+<text class="ann" x="56.0" y="26.7">Radar and climate help here</text>
+</svg>
+      <figcaption>Skill over chance (PR-AUC lift, fold means, tested on 2016 to 2025) by how far ahead the model predicts. The best model beats persistence at 0 days by +0.24 lift by year-level bootstrap (95% CI +0.14 to +0.37), better in 9 of 10 test years.</figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="cols">
+      <h2>The short version</h2>
+      <div class="text">
+        <p>I defined crop stress as an unusually low vegetation index for a 250 m cropland pixel at that time of year, then tried to predict it from rainfall, air dryness, surface heat and Sentinel-1 radar, none of which come from the optical image the label uses.</p>
+        <p>Climate and radar improve detection of stress in the same 16-day window. Beyond about 16 days there is no demonstrated gain, because vegetation stress is highly persistent: the last satellite image already tells you most of what the next one will.</p>
+        <p>I report that plainly. A clear negative result on lead time is more useful to a monitoring programme than an optimistic forecast.</p>
+      </div>
+    </section>
+
+    <section class="cols">
+      <h2>The problem</h2>
+      <div class="text">
+        <p>Rain-fed smallholder farms in southwestern Nigeria are exposed to dry spells, yet field-level stress records are scarce. Satellites can fill the gap, but without independent labels it is easy to build a model that predicts an index with a version of itself and report a flattering score.</p>
+        <p>The design keeps the label and the predictors on separate sources and tests lead time explicitly, so the numbers mean something.</p>
+      </div>
+    </section>
+
+    <section class="cols">
+      <h2>How it works</h2>
+      <div class="text">
+        <ol class="steps">
+          <li><b>Label the stress</b>Each pixel’s vegetation index is compared with its own history for the same 16-day window, 2001 to 2020, leaving the tested year out. Below one standard deviation counts as stress.</li>
+          <li><b>Add independent predictors</b>CHIRPS rainfall and drought index, ERA5-Land soil moisture and air dryness, MODIS surface temperature, and Sentinel-1 radar backscatter from one satellite track at a time.</li>
+          <li><b>Model against honest baselines</b>XGBoost, compared with climatology, a drought-index rule, and persistence of the last known state.</li>
+          <li><b>Validate across years and space</b>Test data are unseen in both time and place, with a buffer between blocks. Differences are tested with a bootstrap that treats years as the independent unit.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cols">
+      <h2>What the tests show</h2>
+      <div class="text" style="max-width:none">
+        <table>
+          <caption>Gain in lift for emerging stress, with 95% confidence interval</caption>
+          <thead><tr><th>Comparison</th><th>0 days</th><th>16 days</th><th>32 to 48 days</th></tr></thead>
+          <tbody>
+            <tr><td>Climate + NDVI + radar vs persistence</td><td class="num yes">+0.42 [+0.22, +0.62]</td><td class="num">+0.10 [−0.03, +0.26]</td><td>No gain</td></tr>
+            <tr><td>Climate + NDVI vs NDVI only</td><td class="num yes">+0.33 [+0.14, +0.56]</td><td class="num">+0.08 [−0.04, +0.23]</td><td>No gain</td></tr>
+            <tr><td>Radar + NDVI vs NDVI only</td><td class="num yes">+0.21 [+0.09, +0.36]</td><td class="num">+0.03 [−0.06, +0.12]</td><td>No gain</td></tr>
+            <tr><td>Radar added on top of climate + NDVI</td><td class="num yes">+0.10 [+0.04, +0.17]</td><td class="num">+0.03 [−0.02, +0.07]</td><td>Worse at 48 days (−0.07)</td></tr>
+          </tbody>
+        </table>
+        <p class="small">Bold results are the ones whose interval excludes zero. One 48-day result (+0.13) is significant on its own, but it is one of about 70 comparisons and is not supported against persistence, so I treat it as noise.</p>
+        <div class="text">
+          <ul>
+            <li>At 0 days, climate and radar each add skill. Treat this as a nowcast, since it uses same-window information.</li>
+            <li>At 16 days the estimates are small and positive, but every interval includes zero. A gain is not demonstrated.</li>
+            <li>A model using only NDVI history is statistically no better than persistence. History adds nothing over carrying the last state forward.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cols">
+      <h2>What the model relies on</h2>
+      <div class="text">
+        <p>SHAP shows what the model uses, not what causes stress. At 0 days the previous window’s vegetation index dominates, then same-window surface temperature and air dryness, and among radar variables the VH channel. Rainfall and soil-moisture variables each carry little.</p>
+        <p>At 16 days, heat and air dryness together carry about 37% of the total importance, rainfall and soil moisture about 30%, vegetation history about 18% and radar about 12%. In plain terms: the model mostly says that vegetation was already stressed and that it is hot and dry now.</p>
+      </div>
+    </section>
+
+    <section class="cols">
+      <h2>Where and when it works</h2>
+      <div class="text">
+        <ul>
+          <li>Skill peaks in April and fades by July.</li>
+          <li>Stress is common in the north and northwest and rare in the south-central band.</li>
+          <li>The best model beats persistence across most of the area, and does worse in a small cluster at the far north, where its results should not be trusted.</li>
+          <li>Skill varies by year: strong in 2016 and 2020, weak in 2017, 2021 and 2024.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-bottom:8px">Explore the map</h2>
+      <p class="text" style="margin:0 0 16px">Step through every 16-day window from 2016 to 2025. Click any cell to see its time series, how it compares with the area average, and how well the model does there. Observed stress is a satellite proxy, not ground truth.</p>
+      <iframe class="map" src="https://huygens123.github.io/sw-nigeria-crop-stress/" title="Interactive map of predicted and observed crop stress" loading="lazy"></iframe>
+      <p class="small">If the map doesn’t load here, <a href="https://huygens123.github.io/sw-nigeria-crop-stress/">open it in its own tab</a>.</p>
+    </section>
+
+    <section class="cols">
+      <h2>Limits, stated plainly</h2>
+      <div class="text">
+        <ul>
+          <li>The label is a vegetation anomaly, not crop damage. Stress is not yield loss.</li>
+          <li>Many sample points share one climate pixel, so the effective sample is closer to 572 cells than 3,185 points.</li>
+          <li>About a fifth of points sit where two Sentinel-1 tracks overlap and have no radar data.</li>
+          <li>Radar comparisons rest on 10 test years, so intervals are wide. Only the 0-day results are safe to lean on.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cols">
+      <h2>What this shows I can do</h2>
+      <div class="text">
+        <dl class="facts">
+          <div><dt>Remote sensing</dt><dd>Earth Engine at scale, SAR processing, track-aware Sentinel-1 features, quality masking.</dd></div>
+          <div><dt>Modelling</dt><dd>Time-series anomalies, gradient boosting, SHAP, strong baselines, leakage control.</dd></div>
+          <div><dt>Validation</dt><dd>Year-by-space cross-validation, paired bootstrap, clear reporting of null results.</dd></div>
+          <div><dt>Delivery</dt><dd>Reproducible notebooks, a data-provenance table, and an interactive Leaflet map.</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>Need a similar analysis?</b> I build reproducible Earth Engine and Python workflows for monitoring and risk mapping from satellite data.</p>
+    <p><a href="https://abdulquawiyy-owolabi.github.io/">Get in touch</a></p>
+    <p class="small">Data: MODIS, CHIRPS, ERA5-Land, ESA WorldCover, Sentinel-1. Full list and processing in the <a href="https://github.com/Huygens123/sw-nigeria-crop-stress/blob/main/data_provenance.csv">data-provenance table</a>.</p>
+  </footer>
+</div>
+</body>
+</html>
