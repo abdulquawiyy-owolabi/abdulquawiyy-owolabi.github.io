@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Satellite crop-stress detection, SW Nigeria</title>
 <meta name="description" content="A proxy-validated system that detects crop stress in Oyo, Osun and northern Ogun from satellite and climate data, with an honest account of how far ahead it can see.">
-<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" id="siteFavicon">
 <link rel="apple-touch-icon" href="../../assets/favicon.svg">
 <meta name="theme-color" content="#101c22">
 <meta property="og:type" content="website">
@@ -266,5 +266,13 @@ footer p{margin:0 0 .5em}
     <p class="small">Data: MODIS, CHIRPS, ERA5-Land, ESA WorldCover, Sentinel-1. Full list and processing in the <a href="https://github.com/Huygens123/sw-nigeria-crop-stress/blob/main/data_provenance.csv">data-provenance table</a>.</p>
   </footer>
 </div>
+<script>
+  const storedTheme = localStorage.getItem('theme');
+  const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const favicon = document.getElementById('siteFavicon');
+  if (favicon) {
+    favicon.setAttribute('href', initialTheme === 'light' ? '../../assets/favicon-light.svg' : '../../assets/favicon.svg');
+  }
+</script>
 </body>
 </html>
